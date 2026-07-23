@@ -62,19 +62,19 @@ const AI_PROJECTS: AIProject[] = [
     number: '02',
     category: 'SISTEMA DOCUMENTAL MULTI-AGENTE',
     title: 'HUMANOS — Archivo & Historias',
-    description: 'No documentamos empresas. Documentamos a los humanos que las hicieron posibles. Ocho agentes de IA trabajan como una mesa editorial para investigar, contrastar y producir historias que revelan cómo nacen las ideas que cambian el mundo',
+    description: 'No documentamos empresas. Documentamos a los humanos que las hicieron posibles. Ocho agentes de IA trabajan como una mesa editorial para investigar, contrastar y producir historias fascinantes',
     problem: 'Producir periodismo de profundidad e historias de calidad exige días de investigación dispersa',
     motivation: 'Orquesté una mesa editorial agéntica inspirada en los mejores autores de la historia',
     differentiator: '8 agentes autónomos con roles hiperespecíficos desde Borges hasta Gabo y Veritas',
     tags: ['Multi-Agent System', 'Claude', 'n8n', 'Storytelling', 'Audio AI'],
     agentSuite: [
-      { name: 'Borges', role: 'Investigación & Arquitectura narrativa' },
-      { name: 'Gabo', role: 'Escritura Creativa y Copies' },
+      { name: 'Borges', role: 'Investigación & Arquitectura' },
+      { name: 'Gabo', role: 'Escritura Creativa & Copies' },
       { name: 'Veritas', role: 'Fact-checking' },
       { name: 'Moore', role: 'Storyboard' },
-      { name: 'Curie', role: 'Bibliotecaria de assets' },
+      { name: 'Curie', role: 'Bibliotecaria Assets' },
       { name: 'Leonardo', role: 'Director de Arte' },
-      { name: 'Mark', role: 'Data Analyser & Publisher' },
+      { name: 'Mark', role: 'Data & Publisher' },
       { name: 'Talese', role: 'Mentor & Editor Jefe' },
     ],
     videoUrl: 'https://youtube.com/shorts/7MAvFSAI8mY?si=Xujebnp-cEmxkxDW',
@@ -236,21 +236,21 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onNavigate, on
   };
 
   return (
-    <section id="projects" className="relative bg-[#000000] text-white pt-24 pb-96 rounded-t-[40px] sm:rounded-t-[60px] -mt-10 sm:-mt-12 z-30">
-      <div className="max-w-6xl mx-auto px-5 sm:px-8 md:px-10">
-        <FadeIn delay={0} y={40} className="w-full text-center mb-10">
-          <p className="text-xs sm:text-sm font-['Montserrat'] font-extrabold tracking-widest text-[#01C9C7] uppercase mb-3">
+    <section id="projects" className="relative bg-[#000000] text-white pt-20 pb-96 rounded-t-[40px] sm:rounded-t-[60px] -mt-10 sm:-mt-12 z-30">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8">
+        <FadeIn delay={0} y={40} className="w-full text-center mb-8">
+          <p className="text-xs font-['Montserrat'] font-extrabold tracking-widest text-[#01C9C7] uppercase mb-2">
             PROYECTOS Y SOLUCIONES IA
           </p>
-          <h2 className="hero-heading font-['Kanit'] font-black uppercase leading-none tracking-tight text-[10vw] sm:text-[8vw] md:text-[6vw] lg:text-[90px]">
+          <h2 className="hero-heading font-['Kanit'] font-black uppercase leading-none tracking-tight text-[9vw] sm:text-[7vw] md:text-[5vw] lg:text-[76px]">
             MI LAB
           </h2>
         </FadeIn>
 
         {/* Synchronized Quick Number Menu */}
-        <div className="sticky top-16 md:top-20 z-40 bg-[#000000]/95 backdrop-blur-md py-3 px-4 rounded-2xl border border-white/10 mb-24 shadow-2xl overflow-x-auto flex items-center justify-between gap-2 max-w-full no-scrollbar">
+        <div className="sticky top-14 md:top-16 z-40 bg-[#000000]/95 backdrop-blur-md py-2.5 px-3.5 rounded-2xl border border-white/10 mb-16 shadow-2xl overflow-x-auto flex items-center justify-between gap-2 max-w-full no-scrollbar">
           <div className="flex items-center gap-1.5 text-xs font-['Montserrat'] font-bold text-[#01C9C7] mr-2 flex-shrink-0">
-            <Layers className="w-4 h-4" />
+            <Layers className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">AGENTES:</span>
           </div>
 
@@ -261,7 +261,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onNavigate, on
                 <button
                   key={proj.id}
                   onClick={() => scrollToAgent(proj.id)}
-                  className={`flex items-center gap-2 px-3.5 py-1.5 rounded-xl font-['Montserrat'] font-bold text-xs transition-all cursor-pointer flex-shrink-0 ${
+                  className={`flex items-center gap-2 px-3 py-1 rounded-xl font-['Montserrat'] font-bold text-xs transition-all cursor-pointer flex-shrink-0 ${
                     isActive
                       ? 'bg-[#01C9C7] text-black shadow-[0_0_20px_rgba(1,201,199,0.6)] scale-105 border border-[#01C9C7]'
                       : 'bg-[#1F1F1F] text-[#D7E2EA]/80 hover:text-white hover:border-[#01C9C7]/50 border border-white/10'
@@ -275,8 +275,8 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onNavigate, on
           </div>
         </div>
 
-        {/* Stacking Cards Container with Generous Scroll Distance (110vh) */}
-        <div className="flex flex-col gap-28 md:gap-64">
+        {/* Stacking Cards Container - Compact Vertical Footprint to Fit 100% Screen Height */}
+        <div className="flex flex-col gap-24 md:gap-64">
           {AI_PROJECTS.map((project, index) => (
             <ProjectCard
               key={project.id}
@@ -318,43 +318,43 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, total, isActi
       id={project.id}
       ref={containerRef}
       style={{ scale }}
-      className={`relative md:sticky md:top-24 w-full bg-[#000000] rounded-[30px] sm:rounded-[40px] md:rounded-[50px] p-6 sm:p-10 md:p-12 shadow-2xl overflow-hidden min-h-[580px] mb-16 md:mb-[110vh] transition-all duration-500 border-2 scroll-mt-36 ${
+      className={`relative md:sticky md:top-20 w-full bg-[#000000] rounded-[24px] sm:rounded-[36px] md:rounded-[44px] p-5 sm:p-7 md:p-8 shadow-2xl overflow-hidden mb-16 md:mb-[110vh] transition-all duration-500 border-2 scroll-mt-32 max-h-[84vh] overflow-y-auto ${
         isActive
           ? 'border-[#01C9C7] shadow-[0_0_35px_rgba(1,201,199,0.35)]'
           : 'border-white/20 hover:border-[#01C9C7]/60'
       }`}
     >
       {/* Header Info */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-        <div className="flex items-center gap-4">
-          <span className="font-['Kanit'] font-black text-4xl sm:text-6xl text-[#01C9C7]">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-4">
+        <div className="flex items-center gap-3">
+          <span className="font-['Kanit'] font-black text-3xl sm:text-5xl text-[#01C9C7]">
             {project.number}
           </span>
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-xs font-['Montserrat'] font-bold text-[#D7E2EA]/60 tracking-widest uppercase">
+              <span className="text-[11px] font-['Montserrat'] font-bold text-[#D7E2EA]/60 tracking-widest uppercase">
                 {project.category}
               </span>
               {project.inDevelopment && (
-                <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-[#F59E0B]/20 text-[#F59E0B] border border-[#F59E0B]/40 uppercase">
+                <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-[#F59E0B]/20 text-[#F59E0B] border border-[#F59E0B]/40 uppercase">
                   EN DESARROLLO
                 </span>
               )}
             </div>
-            <h3 className="font-['Montserrat'] font-extrabold text-2xl sm:text-4xl text-white">
+            <h3 className="font-['Montserrat'] font-extrabold text-xl sm:text-3xl text-white leading-tight">
               {project.title}
             </h3>
           </div>
         </div>
 
         {/* Action Buttons */}
-        <div className="flex flex-wrap items-center gap-3">
+        <div className="flex flex-wrap items-center gap-2.5">
           {project.videoUrl && (
             <button
               onClick={() => onOpenVideo && onOpenVideo(project.videoUrl!, project.title)}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#01C9C7]/10 hover:bg-[#01C9C7] text-[#01C9C7] hover:text-black font-['Montserrat'] font-bold text-xs uppercase tracking-wider transition-all border border-[#01C9C7]/40 cursor-pointer shadow-lg hover:scale-105"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#01C9C7]/10 hover:bg-[#01C9C7] text-[#01C9C7] hover:text-black font-['Montserrat'] font-bold text-[11px] uppercase tracking-wider transition-all border border-[#01C9C7]/40 cursor-pointer shadow-lg hover:scale-105"
             >
-              <Play className="w-3.5 h-3.5 fill-current" />
+              <Play className="w-3 h-3 fill-current" />
               <span>VER DEMO EN VIDEO</span>
             </button>
           )}
@@ -368,40 +368,40 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, total, isActi
                   window.open(project.demoUrl, '_blank');
                 }
               }}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/30 hover:border-[#01C9C7] hover:text-[#01C9C7] text-white font-['Montserrat'] font-bold text-xs uppercase tracking-wider transition-all cursor-pointer hover:scale-105"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-white/30 hover:border-[#01C9C7] hover:text-[#01C9C7] text-white font-['Montserrat'] font-bold text-[11px] uppercase tracking-wider transition-all cursor-pointer hover:scale-105"
             >
               <span>IR A PROYECTO</span>
-              <ExternalLink className="w-3.5 h-3.5" />
+              <ExternalLink className="w-3 h-3" />
             </button>
           )}
         </div>
       </div>
 
-      <p className="text-sm sm:text-base text-[#D7E2EA]/90 font-light mb-6 max-w-4xl leading-relaxed">
+      <p className="text-xs sm:text-sm text-[#D7E2EA]/90 font-light mb-4 max-w-4xl leading-relaxed">
         {project.description}
       </p>
 
       {/* Narrative Section: Problem, Motivation & Differentiator */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 p-4 sm:p-5 rounded-2xl bg-[#1F1F1F]/60 border border-white/10 text-xs">
-        <div className="flex flex-col gap-1">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4 p-3.5 sm:p-4 rounded-2xl bg-[#1F1F1F]/60 border border-white/10 text-[11px]">
+        <div className="flex flex-col gap-0.5">
           <div className="flex items-center gap-1.5 font-bold text-[#F59E0B] font-['Montserrat'] uppercase">
-            <HelpCircle className="w-3.5 h-3.5" />
+            <HelpCircle className="w-3 h-3" />
             <span>Problema que resuelve</span>
           </div>
           <p className="text-[#D7E2EA]/80 font-light leading-relaxed">{project.problem}</p>
         </div>
 
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-0.5">
           <div className="flex items-center gap-1.5 font-bold text-[#01C9C7] font-['Montserrat'] uppercase">
-            <Lightbulb className="w-3.5 h-3.5" />
+            <Lightbulb className="w-3 h-3" />
             <span>Por qué lo construí</span>
           </div>
           <p className="text-[#D7E2EA]/80 font-light leading-relaxed">{project.motivation}</p>
         </div>
 
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-0.5">
           <div className="flex items-center gap-1.5 font-bold text-emerald-400 font-['Montserrat'] uppercase">
-            <CheckCircle2 className="w-3.5 h-3.5" />
+            <CheckCircle2 className="w-3 h-3" />
             <span>Qué lo hace diferente</span>
           </div>
           <p className="text-[#D7E2EA]/80 font-light leading-relaxed">{project.differentiator}</p>
@@ -410,17 +410,17 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, total, isActi
 
       {/* HUMANOS Special Agent Suite Badge Grid */}
       {project.agentSuite && (
-        <div className="mb-6 p-4 sm:p-5 rounded-2xl bg-[#1F1F1F]/80 border border-[#01C9C7]/30">
-          <div className="flex items-center gap-2 text-xs font-['Montserrat'] font-bold text-[#01C9C7] uppercase tracking-wider mb-3">
-            <Bot className="w-4 h-4 text-[#01C9C7]" />
+        <div className="mb-4 p-3 sm:p-3.5 rounded-2xl bg-[#1F1F1F]/80 border border-[#01C9C7]/30">
+          <div className="flex items-center gap-1.5 text-[11px] font-['Montserrat'] font-bold text-[#01C9C7] uppercase tracking-wider mb-2">
+            <Bot className="w-3.5 h-3.5 text-[#01C9C7]" />
             <span>AGENCIA DE 8 AGENTES ESPECIALIZADOS QUE INTERVIENEN:</span>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-xs">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px]">
             {project.agentSuite.map((ag) => (
-              <div key={ag.name} className="p-2.5 rounded-xl bg-black/70 border border-white/10 flex flex-col">
-                <span className="font-bold text-[#01C9C7] font-['Montserrat']">{ag.name}</span>
-                <span className="text-[10px] text-[#D7E2EA]/70">{ag.role}</span>
+              <div key={ag.name} className="p-2 rounded-xl bg-black/70 border border-white/10 flex flex-col">
+                <span className="font-bold text-[#01C9C7] font-['Montserrat'] text-[11px]">{ag.name}</span>
+                <span className="text-[9px] text-[#D7E2EA]/70">{ag.role}</span>
               </div>
             ))}
           </div>
@@ -428,24 +428,24 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, total, isActi
       )}
 
       {/* Tech Tags */}
-      <div className="flex flex-wrap gap-2 mb-6">
+      <div className="flex flex-wrap gap-1.5 mb-4">
         {project.tags.map((tag) => (
-          <span key={tag} className="text-xs font-semibold px-3 py-1 rounded-full bg-[#1F1F1F] border border-white/10 text-[#D7E2EA]">
+          <span key={tag} className="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-[#1F1F1F] border border-white/10 text-[#D7E2EA]">
             {tag}
           </span>
         ))}
       </div>
 
       {/* Grid Images / Embedded YouTube Media */}
-      <div className="flex flex-col md:grid md:grid-cols-12 gap-4 sm:gap-6">
-        {/* Main Media Block: Video or Main Image (Order-1 on Mobile, Order-2 / col-7 on Desktop) */}
-        <div className="order-1 md:order-2 md:col-span-7 w-full h-full">
+      <div className="flex flex-col md:grid md:grid-cols-12 gap-3 sm:gap-4">
+        {/* Main Media Block: Video or Main Image */}
+        <div className="order-1 md:order-2 md:col-span-7 w-full">
           {embedUrl ? (
-            <div className="w-full h-full min-h-[300px] sm:min-h-[400px] rounded-[24px] overflow-hidden border border-[#01C9C7]/40 shadow-[0_0_25px_rgba(1,201,199,0.25)] bg-black">
+            <div className="w-full h-[220px] sm:h-[260px] md:h-[280px] rounded-[20px] overflow-hidden border border-[#01C9C7]/40 shadow-[0_0_20px_rgba(1,201,199,0.25)] bg-black">
               <iframe
                 src={embedUrl}
                 title={`${project.title} Video Preview`}
-                className="w-full h-full min-h-[300px] sm:min-h-[400px] border-none"
+                className="w-full h-full border-none"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
@@ -455,24 +455,24 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, total, isActi
               src={project.imgRight}
               alt={project.title}
               onError={(e) => { (e.target as HTMLImageElement).src = project.fallbackRight; }}
-              className="w-full h-full min-h-[280px] sm:min-h-[400px] object-cover rounded-[24px] border border-white/10"
+              className="w-full h-[220px] sm:h-[260px] md:h-[280px] object-cover rounded-[20px] border border-white/10"
             />
           )}
         </div>
 
-        {/* Secondary Images Block (Order-2 on Mobile, Order-1 / col-5 on Desktop) */}
-        <div className="order-2 md:order-1 md:col-span-5 flex flex-col gap-4 sm:gap-6">
+        {/* Secondary Images Block */}
+        <div className="order-2 md:order-1 md:col-span-5 flex flex-col gap-3">
           <img
             src={project.imgLeft1}
             alt={project.title}
             onError={(e) => { (e.target as HTMLImageElement).src = project.fallbackLeft1; }}
-            className="w-full h-[160px] sm:h-[200px] object-cover rounded-[24px] border border-white/10"
+            className="w-full h-[105px] sm:h-[125px] object-cover rounded-[18px] border border-white/10"
           />
           <img
             src={project.imgLeft2}
             alt={project.title}
             onError={(e) => { (e.target as HTMLImageElement).src = project.fallbackLeft2; }}
-            className="w-full h-[200px] sm:h-[240px] object-cover rounded-[24px] border border-white/10"
+            className="w-full h-[105px] sm:h-[125px] object-cover rounded-[18px] border border-white/10"
           />
         </div>
       </div>
