@@ -1,5 +1,4 @@
 import React from 'react';
-import { FadeIn } from './FadeIn';
 
 interface NavbarProps {
   onNavigate?: (route: string) => void;
@@ -26,8 +25,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
   };
 
   return (
-    <FadeIn delay={0} y={-20} className="w-full z-40">
-      <nav className="w-full flex items-center justify-between px-4 sm:px-6 md:px-10 pt-5 md:pt-7">
+    <header className="sticky top-0 z-40 w-full bg-[#000000]/90 backdrop-blur-md border-b border-white/10 shadow-lg">
+      <nav className="w-full max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 md:px-10 py-3.5">
         {/* Official Logo with Cyan Neon Glow Halo + Small Crisp Text */}
         <div
           className="flex items-center gap-2.5 cursor-pointer group"
@@ -49,7 +48,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
         </div>
 
         {/* Navigation Menu */}
-        <div className="flex items-center gap-4 sm:gap-8 md:gap-12">
+        <div className="flex items-center gap-3 sm:gap-6 md:gap-10">
           {navItems.map((item) => (
             <button
               key={item.label}
@@ -61,6 +60,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
           ))}
         </div>
       </nav>
-    </FadeIn>
+    </header>
   );
 };

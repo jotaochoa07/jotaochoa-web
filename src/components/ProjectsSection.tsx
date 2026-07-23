@@ -204,6 +204,16 @@ interface ProjectsSectionProps {
   onOpenVideo?: (url: string, title: string) => void;
 }
 
+const getElementOffsetTop = (elem: HTMLElement): number => {
+  let top = 0;
+  let current: HTMLElement | null = elem;
+  while (current) {
+    top += current.offsetTop;
+    current = current.offsetParent as HTMLElement | null;
+  }
+  return top;
+};
+
 export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onNavigate, onOpenVideo }) => {
   const [activeAgentId, setActiveAgentId] = useState<string>('agent-01');
   const isManualScrolling = useRef(false);
@@ -212,14 +222,15 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onNavigate, on
     const handleScrollSync = () => {
       if (isManualScrolling.current) return;
 
-      const navThreshold = 220; // Distance from top of viewport
+      const currentY = window.scrollY + 280;
       let currentActiveId = AI_PROJECTS[0].id;
 
-      for (const proj of AI_PROJECTS) {
+      for (let i = AI_PROJECTS.length - 1; i >= 0; i--) {
+        const proj = AI_PROJECTS[i];
         const elem = document.getElementById(proj.id);
         if (elem) {
-          const rect = elem.getBoundingClientRect();
-          if (rect.top <= navThreshold && rect.bottom > navThreshold) {
+          const elemTop = getElementOffsetTop(elem);
+          if (currentY >= elemTop) {
             currentActiveId = proj.id;
             break;
           }
@@ -239,9 +250,9 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onNavigate, on
 
     const elem = document.getElementById(id);
     if (elem) {
-      const yOffset = -110;
-      const y = elem.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: 'smooth' });
+      const yOffset = -120;
+      const targetY = getElementOffsetTop(elem) + yOffset;
+      window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
     }
 
     setTimeout(() => {
