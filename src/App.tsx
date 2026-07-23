@@ -15,7 +15,9 @@ import { VideoModal } from './components/VideoModal';
 import { HumanosLanding } from './components/HumanosLanding';
 
 export const App: React.FC = () => {
-  const [currentRoute, setCurrentRoute] = useState<'home' | 'humanos'>('home');
+  const [currentRoute, setCurrentRoute] = useState<'home' | 'humanos'>(() => {
+    return window.location.pathname.toLowerCase().includes('humanos') ? 'humanos' : 'home';
+  });
   const [isCVModalOpen, setIsCVModalOpen] = useState(false);
   const [isVoiceAgentModalOpen, setIsVoiceAgentModalOpen] = useState(false);
   const [videoState, setVideoState] = useState<{ isOpen: boolean; url: string; title: string }>({
