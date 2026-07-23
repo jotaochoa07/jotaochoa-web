@@ -44,7 +44,7 @@ const AI_PROJECTS: AIProject[] = [
     number: '01',
     category: 'PROSPECCIÓN & SALES TECH',
     title: 'Smart Hunter',
-    description: 'Plataforma de prospección comercial impulsada por Inteligencia Artificial. Descubrimiento automatizado de prospectos, enriquecimiento de datos de contacto y synchronización inteligente con CRM',
+    description: 'Plataforma de prospección comercial impulsada por Inteligencia Artificial. Descubrimiento automatizado de prospectos, enriquecimiento de datos de contacto y sincronización inteligente con CRM',
     problem: 'Los equipos de ventas pierden horas buscando prospectos manualmente en Google y directorios',
     motivation: 'Diseñé Smart Hunter para automatizar la prospección geolocalizada y enriquecer contactos en segundos',
     differentiator: 'Extracción agéntica directa con validación de datos en tiempo real y sincronización omnicanal',
@@ -172,8 +172,8 @@ const AI_PROJECTS: AIProject[] = [
     tags: ['Claude Code', 'Creativity Gym', 'Storytelling AI', 'In Development'],
     inDevelopment: true,
     demoUrl: '#',
-    imgLeft1: '/agents/creativity-main.png',
-    imgLeft2: '/agents/creativity-main.png',
+    imgLeft1: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=800&auto=format&fit=crop',
+    imgLeft2: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop',
     imgRight: '/agents/creativity-main.png',
     fallbackLeft1: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=800&auto=format&fit=crop',
     fallbackLeft2: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop',
@@ -231,7 +231,9 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onNavigate, on
     setActiveAgentId(id);
     const elem = document.getElementById(id);
     if (elem) {
-      elem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const yOffset = -90;
+      const y = elem.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
     }
   };
 
@@ -275,7 +277,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onNavigate, on
           </div>
         </div>
 
-        {/* Stacking Cards Container - Fluid Responsive Transition (25vh gap) */}
+        {/* Stacking Cards Container */}
         <div className="flex flex-col gap-12 md:gap-24">
           {AI_PROJECTS.map((project, index) => (
             <ProjectCard
