@@ -290,7 +290,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onNavigate, on
         </div>
 
         {/* Stacking Cards Container */}
-        <div className="flex flex-col gap-12 md:gap-24">
+        <div className="flex flex-col gap-6 md:gap-10">
           {AI_PROJECTS.map((project, index) => (
             <div key={project.id} id={project.id} className="scroll-mt-32">
               <ProjectCard
@@ -332,7 +332,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, total, isActi
     <motion.div
       ref={containerRef}
       style={{ scale }}
-      className={`relative md:sticky md:top-20 w-full bg-[#000000] rounded-[24px] sm:rounded-[36px] md:rounded-[44px] p-5 sm:p-7 md:p-8 shadow-2xl overflow-hidden mb-8 md:mb-[25vh] transition-all duration-500 border-2 scroll-mt-32 max-h-[84vh] overflow-y-auto ${
+      className={`relative md:sticky md:top-20 w-full bg-[#000000] rounded-[24px] sm:rounded-[36px] md:rounded-[44px] p-5 sm:p-7 md:p-8 shadow-2xl overflow-hidden mb-6 md:mb-12 transition-all duration-500 border-2 scroll-mt-32 max-h-[84vh] overflow-y-auto ${
         isActive
           ? 'border-[#01C9C7] shadow-[0_0_35px_rgba(1,201,199,0.35)]'
           : 'border-white/20 hover:border-[#01C9C7]/60'
