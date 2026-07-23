@@ -44,7 +44,7 @@ const AI_PROJECTS: AIProject[] = [
     number: '01',
     category: 'PROSPECCIÓN & SALES TECH',
     title: 'Smart Hunter',
-    description: 'Plataforma de prospección comercial impulsada por Inteligencia Artificial. Descubrimiento automatizado de prospectos, enriquecimiento de datos de contacto y sincronización inteligente con CRM',
+    description: 'Plataforma de prospección comercial impulsada por Inteligencia Artificial. Descubrimiento automatizado de prospectos, enriquecimiento de datos de contacto y synchronización inteligente con CRM',
     problem: 'Los equipos de ventas pierden horas buscando prospectos manualmente en Google y directorios',
     motivation: 'Diseñé Smart Hunter para automatizar la prospección geolocalizada y enriquecer contactos en segundos',
     differentiator: 'Extracción agéntica directa con validación de datos en tiempo real y sincronización omnicanal',
@@ -236,7 +236,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onNavigate, on
   };
 
   return (
-    <section id="projects" className="relative bg-[#000000] text-white pt-20 pb-96 rounded-t-[40px] sm:rounded-t-[60px] -mt-10 sm:-mt-12 z-30">
+    <section id="projects" className="relative bg-[#000000] text-white pt-20 pb-48 rounded-t-[40px] sm:rounded-t-[60px] -mt-10 sm:-mt-12 z-30">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8">
         <FadeIn delay={0} y={40} className="w-full text-center mb-8">
           <p className="text-xs font-['Montserrat'] font-extrabold tracking-widest text-[#01C9C7] uppercase mb-2">
@@ -248,7 +248,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onNavigate, on
         </FadeIn>
 
         {/* Synchronized Quick Number Menu */}
-        <div className="sticky top-14 md:top-16 z-40 bg-[#000000]/95 backdrop-blur-md py-2.5 px-3.5 rounded-2xl border border-white/10 mb-16 shadow-2xl overflow-x-auto flex items-center justify-between gap-2 max-w-full no-scrollbar">
+        <div className="sticky top-14 md:top-16 z-40 bg-[#000000]/95 backdrop-blur-md py-2.5 px-3.5 rounded-2xl border border-white/10 mb-12 shadow-2xl overflow-x-auto flex items-center justify-between gap-2 max-w-full no-scrollbar">
           <div className="flex items-center gap-1.5 text-xs font-['Montserrat'] font-bold text-[#01C9C7] mr-2 flex-shrink-0">
             <Layers className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">AGENTES:</span>
@@ -275,8 +275,8 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onNavigate, on
           </div>
         </div>
 
-        {/* Stacking Cards Container - Compact Vertical Footprint to Fit 100% Screen Height */}
-        <div className="flex flex-col gap-24 md:gap-64">
+        {/* Stacking Cards Container - Fluid Responsive Transition (25vh gap) */}
+        <div className="flex flex-col gap-12 md:gap-24">
           {AI_PROJECTS.map((project, index) => (
             <ProjectCard
               key={project.id}
@@ -318,7 +318,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, total, isActi
       id={project.id}
       ref={containerRef}
       style={{ scale }}
-      className={`relative md:sticky md:top-20 w-full bg-[#000000] rounded-[24px] sm:rounded-[36px] md:rounded-[44px] p-5 sm:p-7 md:p-8 shadow-2xl overflow-hidden mb-16 md:mb-[110vh] transition-all duration-500 border-2 scroll-mt-32 max-h-[84vh] overflow-y-auto ${
+      className={`relative md:sticky md:top-20 w-full bg-[#000000] rounded-[24px] sm:rounded-[36px] md:rounded-[44px] p-5 sm:p-7 md:p-8 shadow-2xl overflow-hidden mb-8 md:mb-[25vh] transition-all duration-500 border-2 scroll-mt-32 max-h-[84vh] overflow-y-auto ${
         isActive
           ? 'border-[#01C9C7] shadow-[0_0_35px_rgba(1,201,199,0.35)]'
           : 'border-white/20 hover:border-[#01C9C7]/60'
