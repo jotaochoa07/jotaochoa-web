@@ -50,7 +50,7 @@ interface HumanosGalleryProps {
 
 export const HumanosGallery: React.FC<HumanosGalleryProps> = () => {
   return (
-    <section className="bg-[#000000] py-20 border-y border-white/10 overflow-hidden relative">
+    <section id="humanos" className="bg-[#000000] py-20 border-y border-white/10 overflow-hidden relative">
       <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-10">
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">

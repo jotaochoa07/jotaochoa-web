@@ -40,7 +40,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenVoiceModal }) =>
   ];
 
   return (
-    <section className="relative min-h-[92vh] w-full flex flex-col justify-between items-center px-5 sm:px-8 md:px-10 pt-6 pb-16 bg-[#000000] text-white overflow-hidden">
+    <section id="hero" className="relative min-h-[92vh] w-full flex flex-col justify-between items-center px-5 sm:px-8 md:px-10 pt-6 pb-16 bg-[#000000] text-white overflow-hidden">
       {/* Central Content */}
       <div className="relative z-20 max-w-5xl mx-auto flex flex-col items-center text-center mt-2">
         {/* Subtitle Badge */}

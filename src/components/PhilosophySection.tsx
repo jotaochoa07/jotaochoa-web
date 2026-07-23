@@ -27,7 +27,7 @@ export const PhilosophySection: React.FC = () => {
   ];
 
   return (
-    <section className="relative bg-[#000000] text-white py-24 border-t border-white/10 overflow-hidden z-30">
+    <section id="philosophy" className="relative bg-[#000000] text-white py-24 border-t border-white/10 overflow-hidden z-30">
       <div className="max-w-6xl mx-auto px-5 sm:px-8 md:px-10">
         <FadeIn delay={0} y={40} className="w-full text-center mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#01C9C7]/10 border border-[#01C9C7]/30 text-[#01C9C7] text-xs font-['Montserrat'] font-bold tracking-widest uppercase mb-3">

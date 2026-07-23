@@ -26,7 +26,7 @@ export const MetricsSection: React.FC = () => {
   ];
 
   return (
-    <section className="relative w-full bg-[#000000] text-white py-14 sm:py-20 border-y border-white/10 overflow-hidden">
+    <section id="metrics" className="relative w-full bg-[#000000] text-white py-14 sm:py-20 border-y border-white/10 overflow-hidden">
       <div className="max-w-6xl mx-auto px-5 sm:px-8 md:px-10">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12">
           {metrics.map((metric, idx) => (

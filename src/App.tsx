@@ -13,6 +13,7 @@ import { CVModal } from './components/CVModal';
 import { VoiceAgentModal } from './components/VoiceAgentModal';
 import { VideoModal } from './components/VideoModal';
 import { HumanosLanding } from './components/HumanosLanding';
+import { DesktopSideDock } from './components/DesktopSideDock';
 
 export const App: React.FC = () => {
   const [currentRoute, setCurrentRoute] = useState<'home' | 'humanos'>(() => {
@@ -57,6 +58,9 @@ export const App: React.FC = () => {
 
   return (
     <div className="relative min-h-screen bg-[#000000] text-white font-['Inter'] antialiased selection:bg-[#01C9C7] selection:text-black overflow-x-clip">
+      {/* Floating Desktop Side Dock Navigation */}
+      <DesktopSideDock />
+
       {/* Top Header */}
       <Navbar onNavigate={(route) => handleNavigate(route as any)} />
 
