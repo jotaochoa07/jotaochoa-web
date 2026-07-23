@@ -7,70 +7,96 @@ interface CareerSectionProps {
   onOpenCV?: () => void;
 }
 
-export const CareerSection: React.FC<CareerSectionProps> = ({ onOpenCV }) => {
-  const { t } = useLanguage();
-
-  const experiences = [
+export function getExperiences(language: 'es' | 'en') {
+  const isEn = language === 'en';
+  return [
     {
       num: '01',
-      period: 'Ene 2023 — Presente',
+      period: isEn ? 'Jan 2023 — Present' : 'Ene 2023 — Presente',
       role: 'AI Solutions Architect & Growth Partner',
       company: 'Jota Growth Partner / J Lab',
-      highlights: [
-        'Estrategias de Growth Hacking, automatización de marketing y diseño de prompts multimodales a medida.',
-        'Diseño de productos nativos en IA y arquitectura de sistemas multiagente (OpenAI, Claude, Gemini, n8n, GoHighLevel).',
-        'Creador de Smart Hunter, Conserje IA, Jota Ca$h, Radar SmartHunter y Proyecto HUMANOS.',
-      ],
+      highlights: isEn
+        ? [
+            'Growth Hacking strategies, marketing automation, and custom multimodal prompt engineering.',
+            'Native AI product design and multi-agent system architecture (OpenAI, Claude, Gemini, n8n, GoHighLevel).',
+            'Creator of Smart Hunter, Concierge AI, Jota Ca$h, Radar SmartHunter, and Project HUMANS.',
+          ]
+        : [
+            'Estrategias de Growth Hacking, automatización de marketing y diseño de prompts multimodales a medida.',
+            'Diseño de productos nativos en IA y arquitectura de sistemas multiagente (OpenAI, Claude, Gemini, n8n, GoHighLevel).',
+            'Creador de Smart Hunter, Conserje IA, Jota Ca$h, Radar SmartHunter y Proyecto HUMANOS.',
+          ],
     },
     {
       num: '02',
-      period: 'Oct 2021 — Jul 2023',
-      role: 'Coordinador de Experiencia Digital',
+      period: isEn ? 'Oct 2021 — Jul 2023' : 'Oct 2021 — Jul 2023',
+      role: isEn ? 'Digital Experience Coordinator' : 'Coordinador de Experiencia Digital',
       company: 'Fundación Universitaria del Área Andina',
-      highlights: [
-        'Lideré la optimización de experiencia de usuario (UX), adquisición digital, analítica y conversión omnicanal.',
-      ],
+      highlights: isEn
+        ? [
+            'Led user experience (UX) optimization, digital acquisition, analytics, and omnichannel conversion.',
+          ]
+        : [
+            'Lideré la optimización de experiencia de usuario (UX), adquisición digital, analítica y conversión omnicanal.',
+          ],
     },
     {
       num: '03',
-      period: 'Jun 2017 — Jun 2021',
-      role: 'CEO & Cofundador',
+      period: isEn ? 'Jun 2017 — Jun 2021' : 'Jun 2017 — Jun 2021',
+      role: isEn ? 'CEO & Co-Founder' : 'CEO & Cofundador',
       company: 'Amazonas Organic',
-      highlights: [
-        'Fundé y escalé una empresa internacional de e-commerce sostenible. Logística de exportación y branding.',
-      ],
+      highlights: isEn
+        ? [
+            'Founded and scaled an international sustainable e-commerce brand. Export logistics and brand building.',
+          ]
+        : [
+            'Fundé y escalé una empresa internacional de e-commerce sostenible. Logística de exportación y branding.',
+          ],
     },
     {
       num: '04',
-      period: 'Ene 2012 — Abr 2013',
-      role: 'Editor Senior',
-      company: 'Diario La República',
-      highlights: [
-        'Dirigí la estrategia editorial y lideré un equipo de más de 40 periodistas. Operación de contenidos y storytelling.',
-      ],
+      period: isEn ? 'Jan 2012 — Apr 2013' : 'Ene 2012 — Abr 2013',
+      role: isEn ? 'Senior Editor' : 'Editor Senior',
+      company: isEn ? 'La República Financial Newspaper' : 'Diario La República',
+      highlights: isEn
+        ? [
+            'Directed editorial strategy and managed a team of 40+ journalists. Content operations and storytelling.',
+          ]
+        : [
+            'Dirigí la estrategia editorial y lideré un equipo de más de 40 periodistas. Operación de contenidos y storytelling.',
+          ],
     },
   ];
+}
 
-  const education = [
+export function getEducation(language: 'es' | 'en') {
+  const isEn = language === 'en';
+  return [
     {
       num: '01',
-      degree: 'Máster en Comercio Electrónico',
-      institution: 'HEC Montréal — Canadá',
-      tag: 'Posgrado Internacional',
+      degree: isEn ? 'Master in E-Commerce' : 'Máster en Comercio Electrónico',
+      institution: isEn ? 'HEC Montréal — Canada' : 'HEC Montréal — Canadá',
+      tag: isEn ? 'International Master' : 'Posgrado Internacional',
     },
     {
       num: '02',
-      degree: 'Máster en Periodismo',
-      institution: 'Universidad del Rosario — Colombia',
-      tag: 'Posgrado',
+      degree: isEn ? 'Master in Journalism' : 'Máster en Periodismo',
+      institution: isEn ? 'Rosario University — Colombia' : 'Universidad del Rosario — Colombia',
+      tag: isEn ? 'Postgraduate Degree' : 'Posgrado',
     },
     {
       num: '03',
-      degree: 'Profesional en Comunicación Social y Periodismo',
+      degree: isEn ? 'B.A. in Journalism & Mass Communication' : 'Profesional en Comunicación Social y Periodismo',
       institution: 'Universidad Jorge Tadeo Lozano',
-      tag: 'Pregrado',
+      tag: isEn ? 'Bachelor Degree' : 'Pregrado',
     },
   ];
+}
+
+export const CareerSection: React.FC<CareerSectionProps> = ({ onOpenCV }) => {
+  const { language, t } = useLanguage();
+  const experiences = getExperiences(language);
+  const education = getEducation(language);
 
   return (
     <section id="career" className="relative w-full bg-[#1F1F1F] text-white rounded-t-[40px] sm:rounded-t-[60px] px-5 sm:px-8 md:px-10 py-24 border-t border-white/10 z-35">
@@ -127,7 +153,7 @@ export const CareerSection: React.FC<CareerSectionProps> = ({ onOpenCV }) => {
           <div className="lg:col-span-5 flex flex-col gap-6">
             <div className="flex items-center gap-3 text-lg font-['Montserrat'] font-bold text-[#01C9C7] uppercase border-b border-white/10 pb-3 mb-2">
               <GraduationCap className="w-5 h-5 text-[#01C9C7]" />
-              <span>Educación & Certificación</span>
+              <span>{t.career.eduTitle}</span>
             </div>
 
             <div className="space-y-4">
@@ -151,7 +177,9 @@ export const CareerSection: React.FC<CareerSectionProps> = ({ onOpenCV }) => {
                   </div>
                   <div>
                     <h4 className="font-['Montserrat'] font-bold text-sm text-white">Claude AI Builder Challenge</h4>
-                    <p className="text-xs text-[#D7E2EA]/70">Lab10 — Certificación de Arquitectura de Agentes</p>
+                    <p className="text-xs text-[#D7E2EA]/70">
+                      {language === 'en' ? 'Lab10 — Agentic Architecture Certification' : 'Lab10 — Certificación de Arquitectura de Agentes'}
+                    </p>
                   </div>
                 </div>
               </FadeIn>
@@ -164,7 +192,7 @@ export const CareerSection: React.FC<CareerSectionProps> = ({ onOpenCV }) => {
                 className="w-full flex items-center justify-center gap-2 p-4 rounded-2xl bg-[#01C9C7] text-black font-['Montserrat'] font-extrabold text-sm uppercase tracking-wider hover:bg-[#01C9C7]/90 transition-all cursor-pointer shadow-xl"
               >
                 <FileText className="w-5 h-5" />
-                <span>DESCARGAR CV COMPLETO (PDF)</span>
+                <span>{t.about.cvBtn}</span>
               </button>
             </FadeIn>
           </div>
