@@ -37,9 +37,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
         </FadeIn>
 
         {/* Persuasive Bio Paragraph */}
-        <div className="max-w-[840px] text-[#D7E2EA] font-['Inter'] font-medium text-base sm:text-xl md:text-2xl leading-relaxed flex flex-col gap-6">
-          <AnimatedText text={t.about.p1} />
-          {t.about.p2 && <AnimatedText text={t.about.p2} />}
+        <div className="max-w-[840px] text-[#D7E2EA] font-['Inter'] font-medium text-base sm:text-xl md:text-2xl leading-relaxed">
+          <AnimatedText text={t.about.bio} />
         </div>
 
         {/* Tech Stack Pills */}

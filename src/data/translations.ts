@@ -31,9 +31,7 @@ export interface TranslationContent {
   about: {
     badge: string;
     title: string;
-    p1: string;
-    p2: string;
-    p3: string;
+    bio: string;
     cvBtn: string;
   };
   projects: {
@@ -107,9 +105,9 @@ export const translations: Record<'es' | 'en', TranslationContent> = {
     about: {
       badge: 'AI BUILDER & ESTRATEGA DE PRODUCTO',
       title: 'SOBRE MÍ',
-      p1: 'Durante más de 20 años he ayudado a empresas a aprovechar la tecnología para crecer, innovar y hacer mejor su trabajo. Hoy estoy enfocado en crear productos digitales, automatizaciones y soluciones con inteligencia artificial que resuelven problemas reales. Me apasiona conectar la estrategia con la ejecución y convertir ideas complejas en herramientas simples, útiles y con impacto para las personas que las usan.',
-      p2: 'Me describo como un emprendedor con una alta dosis de creatividad y una curiosidad constante por construir lo que sigue.',
-      p3: 'Manejo fluido de Español, Inglés y Francés para colaborar con equipos multidisciplinarios a nivel global.',
+      bio: `Durante más de 20 años he ayudado a empresas a aprovechar la tecnología para crecer, innovar y hacer mejor su trabajo. Hoy estoy enfocado en crear productos digitales, automatizaciones y soluciones con inteligencia artificial que resuelven problemas reales. Me apasiona conectar la estrategia con la ejecución y convertir ideas complejas en herramientas simples, útiles y con impacto para las personas que las usan.
+
+Me describo como un emprendedor con una alta dosis de creatividad y una curiosidad constante por construir lo que sigue.`,
       cvBtn: 'DESCARGAR CV OFICIAL (PDF)',
     },
     projects: {
@@ -181,9 +179,9 @@ export const translations: Record<'es' | 'en', TranslationContent> = {
     about: {
       badge: 'AI BUILDER & PRODUCT STRATEGIST',
       title: 'ABOUT ME',
-      p1: 'For over 20 years, I have helped companies leverage technology to grow, innovate, and perform at their best. Today, I am focused on creating digital products, automations, and artificial intelligence solutions that solve real-world problems. I am passionate about connecting strategy with execution and turning complex ideas into simple, useful, high-impact tools for the people who use them.',
-      p2: 'I describe myself as an entrepreneur with a rich creative drive and a constant curiosity to build what comes next.',
-      p3: 'Fluent in Spanish, English, and French to collaborate with global cross-functional teams.',
+      bio: `For over 20 years, I have helped companies leverage technology to grow, innovate, and perform at their best. Today, I am focused on creating digital products, automations, and artificial intelligence solutions that solve real-world problems. I am passionate about connecting strategy with execution and turning complex ideas into simple, useful, high-impact tools for the people who use them.
+
+I describe myself as an entrepreneur with a rich creative drive and a constant curiosity to build what comes next.`,
       cvBtn: 'DOWNLOAD OFFICIAL CV (PDF)',
     },
     projects: {
