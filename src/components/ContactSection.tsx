@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FadeIn } from './FadeIn';
-import { Mail, Phone, MapPin, Send, CheckCircle2 } from 'lucide-react';
+import { Mail, Phone, MapPin } from 'lucide-react';
 
 const LinkedinIcon = () => (
   <svg className="w-5 h-5 text-[#01C9C7] fill-current" viewBox="0 0 24 24">
@@ -9,18 +9,16 @@ const LinkedinIcon = () => (
 );
 
 export const ContactSection: React.FC = () => {
-  const [submitted, setSubmitted] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    message: '',
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
+  React.useEffect(() => {
+    const scriptId = 'ghl-form-embed-script';
+    if (!document.getElementById(scriptId)) {
+      const script = document.createElement('script');
+      script.id = scriptId;
+      script.src = 'https://link.ghlespanol.com/js/form_embed.js';
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  }, []);
 
   return (
     <footer id="contact" className="relative w-full bg-[#000000] text-white py-24 px-5 sm:px-8 md:px-10 border-t border-white/10 z-30">
@@ -93,78 +91,25 @@ export const ContactSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: GoHighLevel Ready Contact Form */}
-          <div className="lg:col-span-7 bg-[#1F1F1F] border border-white/10 rounded-3xl p-6 sm:p-10 shadow-2xl">
-            {!submitted ? (
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label className="block text-xs font-['Montserrat'] font-bold text-[#D7E2EA] uppercase mb-2">Nombre Completo</label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="Tu nombre"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3.5 rounded-2xl bg-black border border-white/10 text-white text-sm focus:outline-none focus:border-[#01C9C7]"
-                  />
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-['Montserrat'] font-bold text-[#D7E2EA] uppercase mb-2">Correo Electrónico</label>
-                    <input
-                      type="email"
-                      required
-                      placeholder="tu@email.com"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-3.5 rounded-2xl bg-black border border-white/10 text-white text-sm focus:outline-none focus:border-[#01C9C7]"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-['Montserrat'] font-bold text-[#D7E2EA] uppercase mb-2">Empresa / Proyecto</label>
-                    <input
-                      type="text"
-                      placeholder="Nombre de tu marca"
-                      value={formData.company}
-                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                      className="w-full px-4 py-3.5 rounded-2xl bg-black border border-white/10 text-white text-sm focus:outline-none focus:border-[#01C9C7]"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-['Montserrat'] font-bold text-[#D7E2EA] uppercase mb-2">Detalles de tu Solicitud</label>
-                  <textarea
-                    rows={4}
-                    required
-                    placeholder="¿Qué sistema, agente o automatización necesitas construir?"
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-4 py-3.5 rounded-2xl bg-black border border-white/10 text-white text-sm focus:outline-none focus:border-[#01C9C7] resize-none"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full flex items-center justify-center gap-2 py-4 rounded-2xl bg-[#01C9C7] text-black font-['Montserrat'] font-extrabold text-sm uppercase tracking-wider hover:bg-[#01C9C7]/90 transition-all cursor-pointer shadow-xl hover:scale-[1.02]"
-                >
-                  <Send className="w-4 h-4" />
-                  <span>ENVIAR MENSAJE DIRECTO</span>
-                </button>
-              </form>
-            ) : (
-              <div className="py-12 text-center flex flex-col items-center gap-4">
-                <div className="p-4 rounded-full bg-[#01C9C7]/20 text-[#01C9C7]">
-                  <CheckCircle2 className="w-10 h-10" />
-                </div>
-                <h4 className="font-['Montserrat'] font-extrabold text-2xl text-white">¡Mensaje Recibido!</h4>
-                <p className="text-sm text-[#D7E2EA]/80 max-w-md">
-                  Gracias por escribir. Te responderé en menos de 24 horas para agendar nuestra llamada estratégica.
-                </p>
-              </div>
-            )}
+          {/* Right Column: GoHighLevel Native Contact Form */}
+          <div className="lg:col-span-7 bg-[#1F1F1F] border border-white/10 rounded-3xl p-4 sm:p-6 shadow-2xl overflow-hidden min-h-[500px]">
+            <iframe
+              src="https://link.ghlespanol.com/widget/form/87otXHPI9MREDA8XPr2D"
+              style={{ width: '100%', minHeight: '520px', border: 'none', borderRadius: '16px' }}
+              id="inline-87otXHPI9MREDA8XPr2D"
+              data-layout="{'id':'INLINE'}"
+              data-trigger-type="alwaysShow"
+              data-trigger-value=""
+              data-activation-type="alwaysActivated"
+              data-activation-value=""
+              data-deactivation-type="neverDeactivate"
+              data-deactivation-value=""
+              data-form-name="Form Contacto agentejota.com"
+              data-height="520"
+              data-layout-iframe-id="inline-87otXHPI9MREDA8XPr2D"
+              data-form-id="87otXHPI9MREDA8XPr2D"
+              title="Form Contacto agentejota.com"
+            />
           </div>
         </div>
 
