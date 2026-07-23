@@ -73,3 +73,33 @@ chat-widget {
 ::-webkit-scrollbar-thumb:hover {
   background: #01C9C7;
 }
+
+/* Avatar Continuous Floating & Glow Animations (Optimized for Mobile) */
+@keyframes avatarFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+
+@keyframes auraPulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 0.95;
+    transform: scale(1.08);
+  }
+}
+
+.animate-avatar-float {
+  animation: avatarFloat 4s ease-in-out infinite;
+}
+
+.animate-aura-pulse {
+  animation: auraPulse 3s ease-in-out infinite;
+}
+

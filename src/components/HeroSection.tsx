@@ -72,14 +72,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenVoiceModal }) =>
               onClick={onOpenVoiceModal}
               className="relative group cursor-pointer flex flex-col items-center"
             >
-              {/* Cyan Neon Halo Glow behind Avatar */}
-              <div className="absolute inset-0 bg-[#01C9C7] rounded-full blur-3xl opacity-70 group-hover:opacity-100 group-hover:scale-115 transition duration-500" />
+              {/* Cyan Neon Halo Glow behind Avatar with Continuous Breathing Pulse */}
+              <div className="absolute inset-0 bg-[#01C9C7] rounded-full blur-3xl opacity-70 group-hover:opacity-100 group-hover:scale-115 transition duration-500 animate-aura-pulse" />
 
-              {/* Large Avatar Image */}
+              {/* Large Avatar Image with Continuous Float Animation (Perfect for Mobile & Desktop) */}
               <img
                 src="/jota-avatar.png"
                 alt="Jota Ochoa 3D Avatar"
-                className="relative z-10 w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 object-contain filter drop-shadow-[0_12px_35px_rgba(1,201,199,0.6)] group-hover:scale-105 transition-transform duration-300"
+                className="relative z-10 w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 object-contain filter drop-shadow-[0_12px_35px_rgba(1,201,199,0.6)] group-hover:scale-105 transition-transform duration-300 animate-avatar-float"
               />
 
               {/* AI BUILDER Floating Badge Pill containing "Habla con Jota AI" inside */}
