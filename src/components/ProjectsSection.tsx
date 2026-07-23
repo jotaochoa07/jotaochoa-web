@@ -236,7 +236,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onNavigate, on
   };
 
   return (
-    <section id="projects" className="relative bg-[#000000] text-white pt-24 pb-64 rounded-t-[40px] sm:rounded-t-[60px] -mt-10 sm:-mt-12 z-30">
+    <section id="projects" className="relative bg-[#000000] text-white pt-24 pb-96 rounded-t-[40px] sm:rounded-t-[60px] -mt-10 sm:-mt-12 z-30">
       <div className="max-w-6xl mx-auto px-5 sm:px-8 md:px-10">
         <FadeIn delay={0} y={40} className="w-full text-center mb-10">
           <p className="text-xs sm:text-sm font-['Montserrat'] font-extrabold tracking-widest text-[#01C9C7] uppercase mb-3">
@@ -248,7 +248,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onNavigate, on
         </FadeIn>
 
         {/* Synchronized Quick Number Menu */}
-        <div className="sticky top-16 md:top-20 z-40 bg-[#000000]/95 backdrop-blur-md py-3 px-4 rounded-2xl border border-white/10 mb-20 shadow-2xl overflow-x-auto flex items-center justify-between gap-2 max-w-full no-scrollbar">
+        <div className="sticky top-16 md:top-20 z-40 bg-[#000000]/95 backdrop-blur-md py-3 px-4 rounded-2xl border border-white/10 mb-24 shadow-2xl overflow-x-auto flex items-center justify-between gap-2 max-w-full no-scrollbar">
           <div className="flex items-center gap-1.5 text-xs font-['Montserrat'] font-bold text-[#01C9C7] mr-2 flex-shrink-0">
             <Layers className="w-4 h-4" />
             <span className="hidden sm:inline">AGENTES:</span>
@@ -275,8 +275,8 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onNavigate, on
           </div>
         </div>
 
-        {/* Stacking Cards Container with Generous Scroll Spacing */}
-        <div className="flex flex-col gap-24 md:gap-56">
+        {/* Stacking Cards Container with Generous Scroll Distance (110vh) */}
+        <div className="flex flex-col gap-28 md:gap-64">
           {AI_PROJECTS.map((project, index) => (
             <ProjectCard
               key={project.id}
@@ -318,7 +318,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, total, isActi
       id={project.id}
       ref={containerRef}
       style={{ scale }}
-      className={`relative md:sticky md:top-28 w-full bg-[#000000] rounded-[30px] sm:rounded-[40px] md:rounded-[50px] p-6 sm:p-10 md:p-12 shadow-2xl overflow-hidden min-h-[580px] mb-12 md:mb-[65vh] transition-all duration-500 border-2 scroll-mt-36 ${
+      className={`relative md:sticky md:top-24 w-full bg-[#000000] rounded-[30px] sm:rounded-[40px] md:rounded-[50px] p-6 sm:p-10 md:p-12 shadow-2xl overflow-hidden min-h-[580px] mb-16 md:mb-[110vh] transition-all duration-500 border-2 scroll-mt-36 ${
         isActive
           ? 'border-[#01C9C7] shadow-[0_0_35px_rgba(1,201,199,0.35)]'
           : 'border-white/20 hover:border-[#01C9C7]/60'
