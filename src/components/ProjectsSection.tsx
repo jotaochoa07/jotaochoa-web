@@ -204,16 +204,6 @@ interface ProjectsSectionProps {
   onOpenVideo?: (url: string, title: string) => void;
 }
 
-const getElementOffsetTop = (elem: HTMLElement): number => {
-  let top = 0;
-  let current: HTMLElement | null = elem;
-  while (current) {
-    top += current.offsetTop;
-    current = current.offsetParent as HTMLElement | null;
-  }
-  return top;
-};
-
 export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onNavigate, onOpenVideo }) => {
   const [activeAgentId, setActiveAgentId] = useState<string>('agent-01');
   const isManualScrolling = useRef(false);
@@ -222,15 +212,14 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onNavigate, on
     const handleScrollSync = () => {
       if (isManualScrolling.current) return;
 
-      const currentY = window.scrollY + 280;
+      const navThreshold = 250;
       let currentActiveId = AI_PROJECTS[0].id;
 
-      for (let i = AI_PROJECTS.length - 1; i >= 0; i--) {
-        const proj = AI_PROJECTS[i];
+      for (const proj of AI_PROJECTS) {
         const elem = document.getElementById(proj.id);
         if (elem) {
-          const elemTop = getElementOffsetTop(elem);
-          if (currentY >= elemTop) {
+          const rect = elem.getBoundingClientRect();
+          if (rect.top <= navThreshold && rect.bottom > navThreshold) {
             currentActiveId = proj.id;
             break;
           }
@@ -250,8 +239,8 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onNavigate, on
 
     const elem = document.getElementById(id);
     if (elem) {
-      const yOffset = -120;
-      const targetY = getElementOffsetTop(elem) + yOffset;
+      const yOffset = -130;
+      const targetY = elem.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
     }
 
@@ -303,15 +292,16 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onNavigate, on
         {/* Stacking Cards Container */}
         <div className="flex flex-col gap-12 md:gap-24">
           {AI_PROJECTS.map((project, index) => (
-            <ProjectCard
-              key={project.id}
-              project={project}
-              index={index}
-              total={AI_PROJECTS.length}
-              isActive={activeAgentId === project.id}
-              onNavigate={onNavigate}
-              onOpenVideo={onOpenVideo}
-            />
+            <div key={project.id} id={project.id} className="scroll-mt-32">
+              <ProjectCard
+                project={project}
+                index={index}
+                total={AI_PROJECTS.length}
+                isActive={activeAgentId === project.id}
+                onNavigate={onNavigate}
+                onOpenVideo={onOpenVideo}
+              />
+            </div>
           ))}
         </div>
       </div>
@@ -340,7 +330,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, total, isActi
 
   return (
     <motion.div
-      id={project.id}
       ref={containerRef}
       style={{ scale }}
       className={`relative md:sticky md:top-20 w-full bg-[#000000] rounded-[24px] sm:rounded-[36px] md:rounded-[44px] p-5 sm:p-7 md:p-8 shadow-2xl overflow-hidden mb-8 md:mb-[25vh] transition-all duration-500 border-2 scroll-mt-32 max-h-[84vh] overflow-y-auto ${
