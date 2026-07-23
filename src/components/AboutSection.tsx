@@ -3,12 +3,15 @@ import { FadeIn } from './FadeIn';
 import { AnimatedText } from './AnimatedText';
 import { ContactButton } from './Buttons';
 import { FileText, Cpu, Workflow, MessageSquare, Zap, Globe } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 interface AboutSectionProps {
   onOpenCV?: () => void;
 }
 
 export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
+  const { t } = useLanguage();
+
   const techStack = [
     { name: 'OpenAI / Claude / Gemini', icon: Cpu },
     { name: 'Sistemas Multi-Agente', icon: Workflow },
@@ -26,16 +29,16 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
       <div className="relative z-20 max-w-4xl flex flex-col items-center text-center gap-8 sm:gap-10">
         <FadeIn delay={0} y={40}>
           <p className="text-xs sm:text-sm font-['Montserrat'] font-extrabold tracking-widest text-[#01C9C7] uppercase mb-2">
-            AI BUILDER & ESTRATEGA DE PRODUCTO
+            {t.about.badge}
           </p>
           <h2 className="hero-heading font-['Kanit'] font-black uppercase leading-none tracking-tight text-[12vw] sm:text-[9vw] md:text-[7vw] lg:text-[90px]">
-            SOBRE MÍ
+            {t.about.title}
           </h2>
         </FadeIn>
 
         {/* Persuasive Bio Paragraph */}
         <div className="max-w-[820px] text-[#D7E2EA] font-['Inter'] font-medium text-base sm:text-xl md:text-2xl leading-relaxed">
-          <AnimatedText text="Durante más de 20 años he construido negocios digitales en la intersección entre periodismo, marketing, tecnología e Inteligencia Artificial. Hoy diseño sistemas que automatizan operaciones, aceleran la producción de contenido y transforman organizaciones en empresas AI-First con soluciones reales y rentables." />
+          <AnimatedText text={t.about.p1} />
         </div>
 
         {/* Tech Stack Pills */}
@@ -61,7 +64,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenCV }) => {
             className="flex items-center gap-2 px-8 py-4 rounded-full bg-[#1F1F1F] border border-[#01C9C7]/50 hover:bg-[#01C9C7] hover:text-black text-[#01C9C7] font-['Montserrat'] font-extrabold text-sm uppercase tracking-wider transition-all cursor-pointer shadow-lg hover:scale-105"
           >
             <FileText className="w-5 h-5" />
-            <span>VER & DESCARGAR CV COMPLETO</span>
+            <span>{t.about.cvBtn}</span>
           </button>
 
           <ContactButton

@@ -1,12 +1,15 @@
 import React from 'react';
 import { FadeIn } from './FadeIn';
 import { Briefcase, GraduationCap, Award, FileText, Building2 } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 interface CareerSectionProps {
   onOpenCV?: () => void;
 }
 
 export const CareerSection: React.FC<CareerSectionProps> = ({ onOpenCV }) => {
+  const { t } = useLanguage();
+
   const experiences = [
     {
       num: '01',
@@ -75,10 +78,10 @@ export const CareerSection: React.FC<CareerSectionProps> = ({ onOpenCV }) => {
         {/* Title */}
         <FadeIn delay={0} y={40} className="w-full text-center mb-16 sm:mb-20">
           <p className="text-xs sm:text-sm font-['Montserrat'] font-extrabold tracking-widest text-[#01C9C7] uppercase mb-3">
-            TRAYECTORIA Y FORMACIÓN
+            {t.career.badge}
           </p>
           <h2 className="font-['Kanit'] font-black uppercase leading-none tracking-tight text-[9vw] sm:text-[7vw] md:text-[5.5vw] lg:text-[80px] text-white">
-            EXPERIENCIA & EDUCACIÓN
+            {t.career.title}
           </h2>
         </FadeIn>
 
@@ -87,7 +90,7 @@ export const CareerSection: React.FC<CareerSectionProps> = ({ onOpenCV }) => {
           <div className="lg:col-span-7 flex flex-col gap-6">
             <div className="flex items-center gap-3 text-lg font-['Montserrat'] font-bold text-[#01C9C7] uppercase border-b border-white/10 pb-3 mb-2">
               <Briefcase className="w-5 h-5 text-[#01C9C7]" />
-              <span>Experiencia Profesional Destacada</span>
+              <span>{t.career.expTitle}</span>
             </div>
 
             <div className="space-y-6">

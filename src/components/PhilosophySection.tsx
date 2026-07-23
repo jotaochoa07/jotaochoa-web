@@ -1,8 +1,11 @@
 import React from 'react';
 import { FadeIn } from './FadeIn';
 import { Sparkles, Hammer, Box, Cpu, Palette } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export const PhilosophySection: React.FC = () => {
+  const { t } = useLanguage();
+
   const principles = [
     {
       icon: Hammer,
@@ -32,10 +35,10 @@ export const PhilosophySection: React.FC = () => {
         <FadeIn delay={0} y={40} className="w-full text-center mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#01C9C7]/10 border border-[#01C9C7]/30 text-[#01C9C7] text-xs font-['Montserrat'] font-bold tracking-widest uppercase mb-3">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>PRINCIPIOS & FILOSOFÍA</span>
+            <span>{t.philosophy.badge}</span>
           </div>
           <h2 className="hero-heading font-['Kanit'] font-black uppercase leading-none tracking-tight text-[9vw] sm:text-[7vw] md:text-[5vw] lg:text-[75px]">
-            LO QUE CREO
+            {t.philosophy.title}
           </h2>
         </FadeIn>
 

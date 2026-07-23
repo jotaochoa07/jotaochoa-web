@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { FadeIn } from './FadeIn';
 import { Play, ExternalLink, Bot, Layers, CheckCircle2, HelpCircle, Lightbulb } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export interface AIProject {
   id: string;
@@ -205,6 +206,7 @@ interface ProjectsSectionProps {
 }
 
 export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onNavigate, onOpenVideo }) => {
+  const { t } = useLanguage();
   const [activeAgentId, setActiveAgentId] = useState<string>('agent-01');
   const isManualScrolling = useRef(false);
 
@@ -254,10 +256,10 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onNavigate, on
       <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8">
         <FadeIn delay={0} y={40} className="w-full text-center mb-8">
           <p className="text-xs font-['Montserrat'] font-extrabold tracking-widest text-[#01C9C7] uppercase mb-2">
-            PROYECTOS Y SOLUCIONES IA
+            {t.projects.badge}
           </p>
           <h2 className="hero-heading font-['Kanit'] font-black uppercase leading-none tracking-tight text-[9vw] sm:text-[7vw] md:text-[5vw] lg:text-[76px]">
-            MI LAB
+            {t.projects.title}
           </h2>
         </FadeIn>
 
@@ -319,6 +321,7 @@ interface ProjectCardProps {
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, total, isActive, onNavigate, onOpenVideo }) => {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -369,7 +372,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, total, isActi
               className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#01C9C7]/10 hover:bg-[#01C9C7] text-[#01C9C7] hover:text-black font-['Montserrat'] font-bold text-[11px] uppercase tracking-wider transition-all border border-[#01C9C7]/40 cursor-pointer shadow-lg hover:scale-105"
             >
               <Play className="w-3 h-3 fill-current" />
-              <span>VER DEMO EN VIDEO</span>
+              <span>{t.projects.demoBtn}</span>
             </button>
           )}
 
@@ -382,9 +385,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, total, isActi
                   window.open(project.demoUrl, '_blank');
                 }
               }}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-white/30 hover:border-[#01C9C7] hover:text-[#01C9C7] text-white font-['Montserrat'] font-bold text-[11px] uppercase tracking-wider transition-all cursor-pointer hover:scale-105"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-white/30 hover:border-[#01C9C7] hover:text-[#01C9C7] text-white font-[#Montserrat] font-bold text-[11px] uppercase tracking-wider transition-all cursor-pointer hover:scale-105"
             >
-              <span>IR A PROYECTO</span>
+              <span>{t.projects.projectBtn}</span>
               <ExternalLink className="w-3 h-3" />
             </button>
           )}
@@ -400,7 +403,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, total, isActi
         <div className="flex flex-col gap-0.5">
           <div className="flex items-center gap-1.5 font-bold text-[#F59E0B] font-['Montserrat'] uppercase">
             <HelpCircle className="w-3 h-3" />
-            <span>Problema que resuelve</span>
+            <span>{t.projects.problemLabel}</span>
           </div>
           <p className="text-[#D7E2EA]/80 font-light leading-relaxed">{project.problem}</p>
         </div>
@@ -408,7 +411,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, total, isActi
         <div className="flex flex-col gap-0.5">
           <div className="flex items-center gap-1.5 font-bold text-[#01C9C7] font-['Montserrat'] uppercase">
             <Lightbulb className="w-3 h-3" />
-            <span>Por qué lo construí</span>
+            <span>{t.projects.motivationLabel}</span>
           </div>
           <p className="text-[#D7E2EA]/80 font-light leading-relaxed">{project.motivation}</p>
         </div>
@@ -416,7 +419,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, total, isActi
         <div className="flex flex-col gap-0.5">
           <div className="flex items-center gap-1.5 font-bold text-emerald-400 font-['Montserrat'] uppercase">
             <CheckCircle2 className="w-3 h-3" />
-            <span>Qué lo hace diferente</span>
+            <span>{t.projects.differentiatorLabel}</span>
           </div>
           <p className="text-[#D7E2EA]/80 font-light leading-relaxed">{project.differentiator}</p>
         </div>
@@ -427,7 +430,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, total, isActi
         <div className="mb-4 p-3 sm:p-3.5 rounded-2xl bg-[#1F1F1F]/80 border border-[#01C9C7]/30">
           <div className="flex items-center gap-1.5 text-[11px] font-['Montserrat'] font-bold text-[#01C9C7] uppercase tracking-wider mb-2">
             <Bot className="w-3.5 h-3.5 text-[#01C9C7]" />
-            <span>AGENCIA DE 8 AGENTES ESPECIALIZADOS QUE INTERVIENEN:</span>
+            <span>{t.projects.agentSuiteLabel}</span>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px]">

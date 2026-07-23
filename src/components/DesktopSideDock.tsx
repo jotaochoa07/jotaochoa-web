@@ -1,37 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-
-interface DockSection {
-  id: string;
-  number: string;
-  label: string;
-}
-
-const SECTIONS: DockSection[] = [
-  { id: 'hero', number: '01', label: 'Inicio' },
-  { id: 'metrics', number: '02', label: 'Métricas' },
-  { id: 'humanos', number: '03', label: 'HUMANOS' },
-  { id: 'about', number: '04', label: 'Sobre Mí' },
-  { id: 'projects', number: '05', label: 'Mi Lab' },
-  { id: 'career', number: '06', label: 'Trayectoria' },
-  { id: 'philosophy', number: '07', label: 'Manifiesto' },
-  { id: 'contact', number: '08', label: 'Contacto' },
-];
+import { useLanguage } from '../context/LanguageContext';
 
 export const DesktopSideDock: React.FC = () => {
+  const { language } = useLanguage();
   const [activeSection, setActiveSection] = useState<string>('hero');
   const [hoveredId, setHoveredId] = useState<string | null>(null);
+
+  const sections = [
+    { id: 'hero', number: '01', label: language === 'en' ? 'Home' : 'Inicio' },
+    { id: 'metrics', number: '02', label: language === 'en' ? 'Metrics' : 'Métricas' },
+    { id: 'humanos', number: '03', label: 'HUMANOS' },
+    { id: 'about', number: '04', label: language === 'en' ? 'About Me' : 'Sobre Mí' },
+    { id: 'projects', number: '05', label: language === 'en' ? 'My Lab' : 'Mi Lab' },
+    { id: 'career', number: '06', label: language === 'en' ? 'Journey' : 'Trayectoria' },
+    { id: 'philosophy', number: '07', label: language === 'en' ? 'Principles' : 'Manifiesto' },
+    { id: 'contact', number: '08', label: language === 'en' ? 'Contact' : 'Contacto' },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY + window.innerHeight / 3;
 
-      for (let i = SECTIONS.length - 1; i >= 0; i--) {
-        const section = document.getElementById(SECTIONS[i].id);
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i].id);
         if (section) {
           const top = section.offsetTop;
           if (scrollPosition >= top) {
-            setActiveSection(SECTIONS[i].id);
+            setActiveSection(sections[i].id);
             break;
           }
         }
@@ -55,7 +51,7 @@ export const DesktopSideDock: React.FC = () => {
 
   return (
     <div className="hidden lg:flex fixed right-6 top-1/2 -translate-y-1/2 z-50 flex-col items-center gap-3 p-3 rounded-full bg-[#1F1F1F]/80 backdrop-blur-xl border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.8)]">
-      {SECTIONS.map((sec) => {
+      {sections.map((sec) => {
         const isActive = activeSection === sec.id;
         const isHovered = hoveredId === sec.id;
 

@@ -1,27 +1,30 @@
 import React from 'react';
 import { FadeIn } from './FadeIn';
+import { useLanguage } from '../context/LanguageContext';
 
 export const MetricsSection: React.FC = () => {
+  const { t } = useLanguage();
+
   const metrics = [
     {
       number: '20+',
-      label: 'Productos & Agentes',
-      subtext: 'Diseñados e implementados',
+      label: t.metrics.m1Label,
+      subtext: t.metrics.m1Sub,
     },
     {
       number: '20+',
-      label: 'Años construyendo',
-      subtext: 'Negocios digitales & IA',
+      label: t.metrics.m2Label,
+      subtext: t.metrics.m2Sub,
     },
     {
       number: '3',
-      label: 'Idiomas',
-      subtext: 'Español, Inglés, Francés',
+      label: t.metrics.m3Label,
+      subtext: t.metrics.m3Sub,
     },
     {
       number: '1',
-      label: 'Obsesión',
-      subtext: 'Construir productos reales',
+      label: t.metrics.m4Label,
+      subtext: t.metrics.m4Sub,
     },
   ];
 

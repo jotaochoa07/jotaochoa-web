@@ -2,6 +2,7 @@ import React from 'react';
 import { FadeIn } from './FadeIn';
 import { ContactButton } from './Buttons';
 import { Sparkles, ArrowUpRight } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const TwitterIcon = () => (
   <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -32,6 +33,8 @@ interface ClosingSectionProps {
 }
 
 export const ClosingSection: React.FC<ClosingSectionProps> = ({ onOpenContact }) => {
+  const { t } = useLanguage();
+
   const socialLinks = [
     { name: 'Twitter / X', url: 'https://x.com/JotaOchoa', icon: TwitterIcon },
     { name: 'Instagram', url: 'https://www.instagram.com/jotaochoa.oficial/', icon: InstagramIcon },
@@ -48,7 +51,7 @@ export const ClosingSection: React.FC<ClosingSectionProps> = ({ onOpenContact })
         <FadeIn delay={0} y={30}>
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#01C9C7]/10 border border-[#01C9C7]/30 text-[#01C9C7] text-xs font-['Montserrat'] font-extrabold tracking-widest uppercase mb-4">
             <Sparkles className="w-4 h-4 text-[#01C9C7]" />
-            <span>CREATIVIDAD + IA EN ACCIÓN</span>
+            <span>{t.closing.badge}</span>
           </div>
         </FadeIn>
 

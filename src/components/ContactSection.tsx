@@ -1,6 +1,7 @@
 import React from 'react';
 import { FadeIn } from './FadeIn';
 import { Mail, Phone, MapPin } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const LinkedinIcon = () => (
   <svg className="w-5 h-5 text-[#01C9C7] fill-current" viewBox="0 0 24 24">
@@ -9,6 +10,8 @@ const LinkedinIcon = () => (
 );
 
 export const ContactSection: React.FC = () => {
+  const { t } = useLanguage();
+
   React.useEffect(() => {
     const scriptId = 'ghl-form-embed-script';
     if (!document.getElementById(scriptId)) {
@@ -25,10 +28,10 @@ export const ContactSection: React.FC = () => {
       <div className="max-w-6xl mx-auto">
         <FadeIn delay={0} y={40} className="w-full text-center mb-16">
           <p className="text-xs sm:text-sm font-['Montserrat'] font-extrabold tracking-widest text-[#01C9C7] uppercase mb-3">
-            CONECTEMOS & CONSTRUYAMOS
+            {t.contact.badge}
           </p>
           <h2 className="hero-heading font-['Kanit'] font-black uppercase leading-none tracking-tight text-[10vw] sm:text-[8vw] md:text-[6vw] lg:text-[85px]">
-            HABLEMOS
+            {t.contact.title}
           </h2>
         </FadeIn>
 
@@ -36,7 +39,7 @@ export const ContactSection: React.FC = () => {
           {/* Left Column: Direct Info */}
           <div className="lg:col-span-5 flex flex-col gap-6">
             <h3 className="font-['Montserrat'] font-extrabold text-2xl text-white">
-              ¿Listo para transformar tu producto u operación con IA?
+              {t.contact.subtitle}
             </h3>
             <p className="text-sm text-[#D7E2EA]/80 leading-relaxed font-light">
               Escríbeme para diseñar la arquitectura agéntica de tu empresa, automatizar tus flujos de trabajo o colaborar en nuevos productos.

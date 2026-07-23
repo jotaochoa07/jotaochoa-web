@@ -1,6 +1,7 @@
 import React from 'react';
 import { FadeIn } from './FadeIn';
 import { Play, Sparkles } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const YoutubeIcon = () => (
   <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -49,6 +50,8 @@ interface HumanosGalleryProps {
 }
 
 export const HumanosGallery: React.FC<HumanosGalleryProps> = () => {
+  const { t } = useLanguage();
+
   return (
     <section id="humanos" className="bg-[#000000] py-20 border-y border-white/10 overflow-hidden relative">
       <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-10">
@@ -57,10 +60,10 @@ export const HumanosGallery: React.FC<HumanosGalleryProps> = () => {
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#01C9C7]/10 border border-[#01C9C7]/30 text-[#01C9C7] text-xs font-['Montserrat'] font-bold tracking-widest uppercase mb-3">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>PROYECTO EDITORIAL</span>
+              <span>{t.humanosGallery.badge}</span>
             </div>
             <h2 className="font-['Kanit'] font-black uppercase text-3xl sm:text-5xl text-white tracking-tight">
-              HUMANOS — EPISODIOS
+              {t.humanosGallery.title}
             </h2>
           </div>
 

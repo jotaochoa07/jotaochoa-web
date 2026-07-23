@@ -2,6 +2,7 @@ import React from 'react';
 import { FadeIn } from './FadeIn';
 import { Magnet } from './Magnet';
 import { Mic, Sparkles } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const TwitterIcon = () => (
   <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -32,6 +33,8 @@ interface HeroSectionProps {
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenVoiceModal }) => {
+  const { t } = useLanguage();
+
   const socialLinks = [
     { name: 'Twitter / X', url: 'https://x.com/JotaOchoa', icon: TwitterIcon },
     { name: 'Instagram', url: 'https://www.instagram.com/jotaochoa.oficial/', icon: InstagramIcon },
@@ -47,21 +50,21 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenVoiceModal }) =>
         <FadeIn delay={0.1} y={20}>
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#1F1F1F] border border-white/10 text-xs font-['Montserrat'] font-bold tracking-widest text-[#D7E2EA] uppercase mb-3 shadow-lg">
             <span className="w-2 h-2 rounded-full bg-[#01C9C7] animate-pulse" />
-            <span>AI SOLUTIONS ARCHITECT & AGENTIC PRODUCT BUILDER</span>
+            <span>{t.hero.badge}</span>
           </div>
         </FadeIn>
 
         {/* Non-overlapping Title */}
         <FadeIn delay={0.2} y={30}>
           <h1 className="hero-heading font-['Kanit'] font-black uppercase tracking-tight text-[13vw] sm:text-[10vw] md:text-[8vw] lg:text-[110px] leading-[0.9] mb-4">
-            HOLA, SOY JOTA
+            {t.hero.title}
           </h1>
         </FadeIn>
 
         {/* Hero Copy */}
         <FadeIn delay={0.3} y={20} className="max-w-3xl">
           <p className="font-['Montserrat'] font-semibold text-[#D7E2EA] text-base sm:text-xl md:text-2xl leading-relaxed tracking-tight">
-            20+ años construyendo productos y negocios digitales. Especializado en sistemas de IA y automatizaciones omnicanal
+            {t.hero.copy}
           </p>
         </FadeIn>
 
@@ -91,7 +94,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenVoiceModal }) =>
                 <span className="text-white/30 font-light">|</span>
                 <Mic className="w-4 h-4 text-[#01C9C7]" />
                 <span className="font-['Montserrat'] font-extrabold text-xs text-[#01C9C7] uppercase tracking-wider">
-                  Habla con Jota AI
+                  {t.hero.micPill}
                 </span>
               </div>
             </div>
