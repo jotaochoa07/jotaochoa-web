@@ -26,6 +26,22 @@ export const App: React.FC = () => {
     title: '',
   });
 
+  React.useEffect(() => {
+    const handlePopState = () => {
+      setCurrentRoute(window.location.pathname.toLowerCase().includes('humanos') ? 'humanos' : 'home');
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  const handleNavigate = (route: 'home' | 'humanos') => {
+    setCurrentRoute(route);
+    const newPath = route === 'humanos' ? '/humanos' : '/';
+    if (window.location.pathname !== newPath) {
+      window.history.pushState({}, '', newPath);
+    }
+  };
+
   const handleOpenVideo = (url: string, title: string) => {
     setVideoState({ isOpen: true, url, title });
   };
@@ -36,13 +52,13 @@ export const App: React.FC = () => {
 
   // If user navigates to dedicated /humanos page
   if (currentRoute === 'humanos') {
-    return <HumanosLanding onBackToPortfolio={() => setCurrentRoute('home')} />;
+    return <HumanosLanding onBackToPortfolio={() => handleNavigate('home')} />;
   }
 
   return (
     <div className="relative min-h-screen bg-[#000000] text-white font-['Inter'] antialiased selection:bg-[#01C9C7] selection:text-black overflow-x-clip">
       {/* Top Header */}
-      <Navbar onNavigate={(route) => setCurrentRoute(route as any)} />
+      <Navbar onNavigate={(route) => handleNavigate(route as any)} />
 
       {/* Main Narrative Flow */}
       <main>
@@ -53,14 +69,14 @@ export const App: React.FC = () => {
         <MetricsSection />
 
         {/* 3. HUMANOS Shorts Editorial Archive */}
-        <HumanosGallery onNavigate={(route) => setCurrentRoute(route as any)} />
+        <HumanosGallery onNavigate={(route) => handleNavigate(route as any)} />
 
         {/* 4. About Section (Sobre Mí - 20+ Años) */}
         <AboutSection onOpenCV={() => setIsCVModalOpen(true)} />
 
         {/* 5. MI LAB — AI Agents & Products Catalog */}
         <ProjectsSection
-          onNavigate={(route) => setCurrentRoute(route as any)}
+          onNavigate={(route) => handleNavigate(route as any)}
           onOpenVideo={handleOpenVideo}
         />
 
