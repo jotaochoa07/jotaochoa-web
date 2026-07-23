@@ -39,166 +39,244 @@ function getYouTubeEmbedUrl(url?: string): string | null {
   return videoId ? `https://www.youtube.com/embed/${videoId}?autoplay=0&rel=0` : null;
 }
 
-const AI_PROJECTS: AIProject[] = [
-  {
-    id: 'agent-01',
-    number: '01',
-    category: 'PROSPECCIÓN & SALES TECH',
-    title: 'Smart Hunter',
-    description: 'Plataforma de prospección comercial impulsada por Inteligencia Artificial. Descubrimiento automatizado de prospectos, enriquecimiento de datos de contacto y sincronización inteligente con CRM',
-    problem: 'Los equipos de ventas pierden horas buscando prospectos manualmente en Google y directorios',
-    motivation: 'Diseñé Smart Hunter para automatizar la prospección geolocalizada y enriquecer contactos en segundos',
-    differentiator: 'Extracción agéntica directa con validación de datos en tiempo real y sincronización omnicanal',
-    tags: ['Google Maps API', 'n8n', 'Lead Scraping', 'CRM Sync', 'OpenAI'],
-    demoUrl: 'https://www.smarthunter.co/',
-    imgLeft1: '/agents/img-ajustadas/smarthunter-1.png',
-    imgLeft2: '/agents/img-ajustadas/smarthunter-2.png',
-    imgRight: '/agents/img-ajustadas/smarthunter-main.png',
-    fallbackLeft1: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop',
-    fallbackLeft2: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop',
-    fallbackRight: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 'agent-02',
-    number: '02',
-    category: 'SISTEMA DOCUMENTAL MULTI-AGENTE',
-    title: 'HUMANOS — Archivo & Historias',
-    description: 'No documentamos empresas. Documentamos a los humanos que las hicieron posibles. Ocho agentes de IA trabajan como una mesa editorial para investigar, contrastar y producir historias fascinantes',
-    problem: 'Producir periodismo de profundidad e historias de calidad exige días de investigación dispersa',
-    motivation: 'Orquesté una mesa editorial agéntica inspirada en los mejores autores de la historia',
-    differentiator: '8 agentes autónomos con roles hiperespecíficos desde Borges hasta Gabo y Veritas',
-    tags: ['Multi-Agent System', 'Claude', 'n8n', 'Storytelling', 'Audio AI'],
-    agentSuite: [
-      { name: 'Borges', role: 'Investigación & Arquitectura' },
-      { name: 'Gabo', role: 'Escritura Creativa & Copies' },
-      { name: 'Veritas', role: 'Fact-checking' },
-      { name: 'Moore', role: 'Storyboard' },
-      { name: 'Curie', role: 'Bibliotecaria Assets' },
-      { name: 'Leonardo', role: 'Director de Arte' },
-      { name: 'Mark', role: 'Data & Publisher' },
-      { name: 'Talese', role: 'Mentor & Editor Jefe' },
-    ],
-    videoUrl: 'https://youtube.com/shorts/7MAvFSAI8mY?si=Xujebnp-cEmxkxDW',
-    demoUrl: 'humanos',
-    imgLeft1: '/agents/img-ajustadas/humanos-1.png',
-    imgLeft2: '/humanos/jan-koum.png',
-    imgRight: '/humanos/james-dyson.png',
-    fallbackLeft1: '/humanos/jan-koum.png',
-    fallbackLeft2: '/humanos/hedy-lamarr.png',
-    fallbackRight: '/humanos/james-dyson.png',
-  },
-  {
-    id: 'agent-03',
-    number: '03',
-    category: 'HOSPITALIDAD & CONSERJERÍA IA',
-    title: 'Conserje IA',
-    description: 'Asistente conversacional omnicanal para hoteles y negocios de hospitalidad. Integración directa con WhatsApp, automatización CRM y atención 24/7 en múltiples idiomas',
-    problem: 'Hoteles pierden reservas directas fuera de horario por falta de respuesta inmediata',
-    motivation: 'Construí un conserje digital multilingüe enfocado en conversión inmediata y servicio 5 estrellas',
-    differentiator: 'Manejo contextual de itinerarios, reservas y soporte omnicanal directo a WhatsApp',
-    tags: ['WhatsApp Business API', 'GoHighLevel', 'Conversational AI', 'CRM'],
-    videoUrl: 'https://youtu.be/6TJfa4I-7sc?si=kaLFx2xt_ZI8kqYs',
-    demoUrl: 'https://hotels.smarthunter.co/conserje-ia-v2',
-    imgLeft1: '/agents/img-ajustadas/conserje-1.png',
-    imgLeft2: '/agents/img-ajustadas/conserje-2.png',
-    imgRight: '/agents/img-ajustadas/conserje-1.png',
-    fallbackLeft1: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=800&auto=format&fit=crop',
-    fallbackLeft2: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=800&auto=format&fit=crop',
-    fallbackRight: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 'agent-04',
-    number: '04',
-    category: 'AGENTE FINANCIERO',
-    title: 'Jota Ca$h',
-    description: 'Asistente financiero personal conversacional. Diseñado para guiar la toma de decisiones presupuestales, control de gastos y construcción de patrimonio sostenible',
-    problem: 'La mayoría de personas no llevan control de gastos por la fricción de apps complejas',
-    motivation: 'Creé un agente de voz y texto con lenguaje natural para auditar hábitos de consumo en segundos',
-    differentiator: 'Interacción conversacional fluida sin planillas complicadas y con alertas inteligentes',
-    tags: ['Financial AI', 'Voice Assistant', 'LLM Prompting', 'Personal Wealth'],
-    videoUrl: 'https://youtu.be/AXewxFyA1Wg?si=7AHZavb3eeffIk7m',
-    demoUrl: 'https://app.agentejota.com/cash-test',
-    imgLeft1: '/agents/img-ajustadas/cash-1.png',
-    imgLeft2: '/agents/img-ajustadas/cash-2.png',
-    imgRight: '/agents/cash-3.png',
-    fallbackLeft1: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?q=80&w=800&auto=format&fit=crop',
-    fallbackLeft2: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=800&auto=format&fit=crop',
-    fallbackRight: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 'agent-05',
-    number: '05',
-    category: 'REPUTACIÓN ONLINE & REVIEWS',
-    title: 'Radar SmartHunter',
-    description: 'Monitoreo de Google Reviews, análisis de sentimiento de clientes y generación automática de respuestas con el tono de marca en tiempo real',
-    problem: 'Reseñas negativas sin responder a tiempo destruyen la conversión de negocios locales',
-    motivation: 'Automatizar la supervisión de reputación para proteger marcas de forma continua',
-    differentiator: 'Generación de respuestas con tono personalizado y análisis de sentimiento automatizado',
-    tags: ['Sentiment Analysis', 'Google Reviews API', 'Reputation AI'],
-    demoUrl: 'https://radar.smarthunter.co/',
-    imgLeft1: '/agents/img-ajustadas/radar-1.png',
-    imgLeft2: '/agents/img-ajustadas/radar-2.png',
-    imgRight: '/agents/img-ajustadas/radar-main.png',
-    fallbackLeft1: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=800&auto=format&fit=crop',
-    fallbackLeft2: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?q=80&w=800&auto=format&fit=crop',
-    fallbackRight: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 'agent-06',
-    number: '06',
-    category: 'PROPTECH & INMOBILIARIO',
-    title: 'Real Estate AI',
-    description: 'Asistente conversacional inmobiliario para captura y calificación automática de compradores, agendamiento directo de visitas y recorridos virtuales',
-    problem: 'Compradores de propiedad raíz exigen atención inmediata fuera de horario de oficina',
-    motivation: 'Construir un calificador inmobiliario capaz de perfilar presupuesto e intención de compra',
-    differentiator: 'Filtro automático de leads y agendamiento sincronizado directamente al calendario',
-    tags: ['PropTech', 'Lead Qualification', 'WhatsApp API', 'Real Estate'],
-    demoUrl: 'https://invest.smarthunter.co/real-estate--ia-services-page',
-    imgLeft1: '/agents/img-ajustadas/realestate-1.png',
-    imgLeft2: '/agents/img-ajustadas/realestate-2.png',
-    imgRight: '/agents/img-ajustadas/realestate-main.png',
-    fallbackLeft1: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=800&auto=format&fit=crop',
-    fallbackLeft2: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=800&auto=format&fit=crop',
-    fallbackRight: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 'agent-07',
-    number: '07',
-    category: 'GIMNASIO DE CREATIVIDAD CON IA',
-    title: 'Creativity Lab / Creator Lab',
-    description: 'Gimnasio interactivo donde un Mentor IA entrena tus habilidades en artes, escritura y storytelling. Funciona como un portafolio vivo con loops de aprendizaje agéntico que evolucionan a medida que lo usas',
-    problem: 'Estancamiento en la creación de contenido sin retroalimentación continua ni evolución de estilo',
-    motivation: 'Crear un Mentor IA vivo que evalúa, retroalimenta y optimiza el proceso creativo del usuario',
-    differentiator: 'Loops de aprendizaje agéntico personalizados que convierten la práctica en tu portafolio vivo',
-    tags: ['Claude Code', 'Creativity Gym', 'Storytelling AI', 'In Development'],
-    inDevelopment: true,
-    demoUrl: '#',
-    imgLeft1: '/agents/img-ajustadas/creativity-1.png',
-    imgLeft2: '/agents/img-ajustadas/creativity-2.png',
-    imgRight: '/agents/img-ajustadas/creativity-main.png',
-    fallbackLeft1: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=800&auto=format&fit=crop',
-    fallbackLeft2: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop',
-    fallbackRight: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 'agent-08',
-    number: '08',
-    category: 'DISEÑO ESTRATÉGICO AGENT-FIRST',
-    title: 'Redesign Client Platforms',
-    description: 'Rediseño integral de plataformas web y marcas como Invisa y Amarte bajo el principio Agent-First: interfaces ultrarrápidas, diseño dark premium y agentes conversacionales nativos',
-    problem: 'Sitios web tradicionales estáticos con baja conversión y sin integración agéntica',
-    motivation: 'Demostrar que una web moderna debe ser una experiencia viva, agéntica y conversacional',
-    differentiator: 'Arquitectura nativa en IA, estética oscura estilo Linear/Stripe e integración directa de chatbots',
-    tags: ['Agent-First UI', 'React', 'Tailwind', 'Brand Strategy', 'Invisa & Amarte'],
-    demoUrl: '#',
-    imgLeft1: '/agents/img-ajustadas/redesign-1.png',
-    imgLeft2: '/agents/img-ajustadas/redesign-2.png',
-    imgRight: '/agents/img-ajustadas/redesign-main.png',
-    fallbackLeft1: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=800&auto=format&fit=crop',
-    fallbackLeft2: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop',
-    fallbackRight: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop',
-  },
-];
+export function getProjects(language: 'es' | 'en'): AIProject[] {
+  const isEn = language === 'en';
+  return [
+    {
+      id: 'agent-01',
+      number: '01',
+      category: isEn ? 'PROSPECTING & SALES TECH' : 'PROSPECCIÓN & SALES TECH',
+      title: 'Smart Hunter',
+      description: isEn
+        ? 'AI-powered commercial prospecting platform. Automated lead discovery, contact data enrichment, and smart CRM synchronization.'
+        : 'Plataforma de prospección comercial impulsada por Inteligencia Artificial. Descubrimiento automatizado de prospectos, enriquecimiento de datos de contacto y sincronización inteligente con CRM',
+      problem: isEn
+        ? 'Sales teams waste hours manually searching for leads across Google and directories'
+        : 'Los equipos de ventas pierden horas buscando prospectos manualmente en Google y directorios',
+      motivation: isEn
+        ? 'I designed Smart Hunter to automate location-based prospecting and enrich contacts in seconds'
+        : 'Diseñé Smart Hunter para automatizar la prospección geolocalizada y enriquecer contactos en segundos',
+      differentiator: isEn
+        ? 'Direct agentic extraction with real-time data validation and omnichannel sync'
+        : 'Extracción agéntica directa con validación de datos en tiempo real y sincronización omnicanal',
+      tags: ['Google Maps API', 'n8n', 'Lead Scraping', 'CRM Sync', 'OpenAI'],
+      demoUrl: 'https://www.smarthunter.co/',
+      imgLeft1: '/agents/img-ajustadas/smarthunter-1.png',
+      imgLeft2: '/agents/img-ajustadas/smarthunter-2.png',
+      imgRight: '/agents/img-ajustadas/smarthunter-main.png',
+      fallbackLeft1: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop',
+      fallbackLeft2: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop',
+      fallbackRight: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=800&auto=format&fit=crop',
+    },
+    {
+      id: 'agent-02',
+      number: '02',
+      category: isEn ? 'MULTI-AGENT DOCUMENTARY SYSTEM' : 'SISTEMA DOCUMENTAL MULTI-AGENTE',
+      title: isEn ? 'HUMANS — Archive & Stories' : 'HUMANOS — Archivo & Historias',
+      description: isEn
+        ? "We don't document companies. We document the humans who made them possible. Eight AI agents work as an editorial desk to research, cross-examine, and produce fascinating stories."
+        : 'No documentamos empresas. Documentamos a los humanos que las hicieron posibles. Ocho agentes de IA trabajan como una mesa editorial para investigar, contrastar y producir historias fascinantes',
+      problem: isEn
+        ? 'Producing deep journalism and quality storytelling requires days of scattered research'
+        : 'Producir periodismo de profundidad e historias de calidad exige días de investigación dispersa',
+      motivation: isEn
+        ? 'I orchestrated an agentic editorial desk inspired by the greatest authors in history'
+        : 'Orquesté una mesa editorial agéntica inspirada en los mejores autores de la historia',
+      differentiator: isEn
+        ? '8 autonomous agents with hyper-specific roles from Borges to Gabo and Veritas'
+        : '8 agentes autónomos con roles hiperespecíficos desde Borges hasta Gabo y Veritas',
+      tags: ['Multi-Agent System', 'Claude', 'n8n', 'Storytelling', 'Audio AI'],
+      agentSuite: isEn
+        ? [
+            { name: 'Borges', role: 'Research & Architecture' },
+            { name: 'Gabo', role: 'Creative Writing & Copies' },
+            { name: 'Veritas', role: 'Fact-checking' },
+            { name: 'Moore', role: 'Storyboard' },
+            { name: 'Curie', role: 'Assets Librarian' },
+            { name: 'Leonardo', role: 'Art Direction' },
+            { name: 'Mark', role: 'Data & Publisher' },
+            { name: 'Talese', role: 'Mentor & Chief Editor' },
+          ]
+        : [
+            { name: 'Borges', role: 'Investigación & Arquitectura' },
+            { name: 'Gabo', role: 'Escritura Creativa & Copies' },
+            { name: 'Veritas', role: 'Fact-checking' },
+            { name: 'Moore', role: 'Storyboard' },
+            { name: 'Curie', role: 'Bibliotecaria Assets' },
+            { name: 'Leonardo', role: 'Director de Arte' },
+            { name: 'Mark', role: 'Data & Publisher' },
+            { name: 'Talese', role: 'Mentor & Editor Jefe' },
+          ],
+      videoUrl: 'https://youtube.com/shorts/7MAvFSAI8mY?si=Xujebnp-cEmxkxDW',
+      demoUrl: 'humanos',
+      imgLeft1: '/agents/img-ajustadas/humanos-1.png',
+      imgLeft2: '/humanos/jan-koum.png',
+      imgRight: '/humanos/james-dyson.png',
+      fallbackLeft1: '/humanos/jan-koum.png',
+      fallbackLeft2: '/humanos/hedy-lamarr.png',
+      fallbackRight: '/humanos/james-dyson.png',
+    },
+    {
+      id: 'agent-03',
+      number: '03',
+      category: isEn ? 'HOSPITALITY & AI CONCIERGE' : 'HOSPITALIDAD & CONSERJERÍA IA',
+      title: isEn ? 'Concierge AI' : 'Conserje IA',
+      description: isEn
+        ? 'Omnichannel conversational assistant for hotels and hospitality businesses. Direct WhatsApp integration, CRM automation, and 24/7 multilingual support.'
+        : 'Asistente conversacional omnicanal para hoteles y negocios de hospitalidad. Integración directa con WhatsApp, automatización CRM y atención 24/7 en múltiples idiomas',
+      problem: isEn
+        ? 'Hotels lose direct bookings after hours due to lack of immediate response'
+        : 'Hoteles pierden reservas directas fuera de horario por falta de respuesta inmediata',
+      motivation: isEn
+        ? 'I built a multilingual digital concierge focused on instant conversion and 5-star service'
+        : 'Construí un conserje digital multilingüe enfocado en conversión inmediata y servicio 5 estrellas',
+      differentiator: isEn
+        ? 'Contextual handling of itineraries, reservations, and direct WhatsApp support'
+        : 'Manejo contextual de itinerarios, reservas y soporte omnicanal directo a WhatsApp',
+      tags: ['WhatsApp Business API', 'GoHighLevel', 'Conversational AI', 'CRM'],
+      videoUrl: 'https://youtu.be/6TJfa4I-7sc?si=kaLFx2xt_ZI8kqYs',
+      demoUrl: 'https://hotels.smarthunter.co/conserje-ia-v2',
+      imgLeft1: '/agents/img-ajustadas/conserje-1.png',
+      imgLeft2: '/agents/img-ajustadas/conserje-2.png',
+      imgRight: '/agents/img-ajustadas/conserje-1.png',
+      fallbackLeft1: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=800&auto=format&fit=crop',
+      fallbackLeft2: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=800&auto=format&fit=crop',
+      fallbackRight: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=800&auto=format&fit=crop',
+    },
+    {
+      id: 'agent-04',
+      number: '04',
+      category: isEn ? 'FINANCIAL AGENT' : 'AGENTE FINANCIERO',
+      title: 'Jota Ca$h',
+      description: isEn
+        ? 'Conversational personal financial assistant. Designed to guide budget decision-making, expense tracking, and sustainable wealth building.'
+        : 'Asistente financiero personal conversacional. Diseñado para guiar la toma de decisiones presupuestales, control de gastos y construcción de patrimonio sostenible',
+      problem: isEn
+        ? 'Most people fail to track expenses due to the friction of complex apps'
+        : 'La mayoría de personas no llevan control de gastos por la fricción de apps complejas',
+      motivation: isEn
+        ? 'I created a natural language voice and text agent to audit spending habits in seconds'
+        : 'Creé un agente de voz y texto con lenguaje natural para auditar hábitos de consumo en segundos',
+      differentiator: isEn
+        ? 'Smooth conversational interaction without complex spreadsheets and with smart alerts'
+        : 'Interacción conversacional fluida sin planillas complicadas y con alertas inteligentes',
+      tags: ['Financial AI', 'Voice Assistant', 'LLM Prompting', 'Personal Wealth'],
+      videoUrl: 'https://youtu.be/AXewxFyA1Wg?si=7AHZavb3eeffIk7m',
+      demoUrl: 'https://app.agentejota.com/cash-test',
+      imgLeft1: '/agents/img-ajustadas/cash-1.png',
+      imgLeft2: '/agents/img-ajustadas/cash-2.png',
+      imgRight: '/agents/cash-3.png',
+      fallbackLeft1: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?q=80&w=800&auto=format&fit=crop',
+      fallbackLeft2: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=800&auto=format&fit=crop',
+      fallbackRight: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=800&auto=format&fit=crop',
+    },
+    {
+      id: 'agent-05',
+      number: '05',
+      category: isEn ? 'ONLINE REPUTATION & REVIEWS' : 'REPUTACIÓN ONLINE & REVIEWS',
+      title: 'Radar SmartHunter',
+      description: isEn
+        ? 'Google Reviews monitoring, customer sentiment analysis, and automatic tone-of-voice response generation in real time.'
+        : 'Monitoreo de Google Reviews, análisis de sentimiento de clientes y generación automática de respuestas con el tono de marca en tiempo real',
+      problem: isEn
+        ? 'Unanswered negative reviews destroy local business conversion rates'
+        : 'Reseñas negativas sin responder a tiempo destruyen la conversión de negocios locales',
+      motivation: isEn
+        ? 'Automate reputation supervision to protect brand identity continuously'
+        : 'Automatizar la supervisión de reputación para proteger marcas de forma continua',
+      differentiator: isEn
+        ? 'Automated response generation with customized brand tone and sentiment analysis'
+        : 'Generación de respuestas con tono personalizado y análisis de sentimiento automatizado',
+      tags: ['Sentiment Analysis', 'Google Reviews API', 'Reputation AI'],
+      demoUrl: 'https://radar.smarthunter.co/',
+      imgLeft1: '/agents/img-ajustadas/radar-1.png',
+      imgLeft2: '/agents/img-ajustadas/radar-2.png',
+      imgRight: '/agents/img-ajustadas/radar-main.png',
+      fallbackLeft1: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=800&auto=format&fit=crop',
+      fallbackLeft2: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?q=80&w=800&auto=format&fit=crop',
+      fallbackRight: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop',
+    },
+    {
+      id: 'agent-06',
+      number: '06',
+      category: isEn ? 'PROPTECH & REAL ESTATE' : 'PROPTECH & INMOBILIARIO',
+      title: 'Real Estate AI',
+      description: isEn
+        ? 'Real estate conversational assistant for automated buyer capture, lead qualification, tour scheduling, and virtual walkthroughs.'
+        : 'Asistente conversacional inmobiliario para captura y calificación automática de compradores, agendamiento directo de visitas y recorridos virtuales',
+      problem: isEn
+        ? 'Real estate buyers demand instant response outside of office hours'
+        : 'Compradores de propiedad raíz exigen atención inmediata fuera de horario de oficina',
+      motivation: isEn
+        ? 'Build a real estate qualifier capable of profiling budget and buyer intent'
+        : 'Construir un calificador inmobiliario capaz de perfilar presupuesto e intención de compra',
+      differentiator: isEn
+        ? 'Automated lead filtering and direct calendar booking sync'
+        : 'Filtro automático de leads y agendamiento sincronizado directamente al calendario',
+      tags: ['PropTech', 'Lead Qualification', 'WhatsApp API', 'Real Estate'],
+      demoUrl: 'https://invest.smarthunter.co/real-estate--ia-services-page',
+      imgLeft1: '/agents/img-ajustadas/realestate-1.png',
+      imgLeft2: '/agents/img-ajustadas/realestate-2.png',
+      imgRight: '/agents/img-ajustadas/realestate-main.png',
+      fallbackLeft1: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=800&auto=format&fit=crop',
+      fallbackLeft2: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=800&auto=format&fit=crop',
+      fallbackRight: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=800&auto=format&fit=crop',
+    },
+    {
+      id: 'agent-07',
+      number: '07',
+      category: isEn ? 'AI CREATIVITY GYM' : 'GIMNASIO DE CREATIVIDAD CON IA',
+      title: 'Creativity Lab / Creator Lab',
+      description: isEn
+        ? 'Interactive gym where an AI Mentor trains your skills in arts, writing, and storytelling. Functions as a living portfolio with evolving agentic learning loops.'
+        : 'Gimnasio interactivo donde un Mentor IA entrena tus habilidades en artes, escritura y storytelling. Funciona como un portafolio vivo con loops de aprendizaje agéntico que evolucionan a medida que lo usas',
+      problem: isEn
+        ? 'Creative block and content stagnation without continuous feedback or style evolution'
+        : 'Estancamiento en la creación de contenido sin retroalimentación continua ni evolución de estilo',
+      motivation: isEn
+        ? 'Create a live AI Mentor that evaluates, feeds back, and optimizes the user creative workflow'
+        : 'Crear un Mentor IA vivo que evalúa, retroalimenta y optimiza el proceso creativo del usuario',
+      differentiator: isEn
+        ? 'Personalized agentic learning loops turning daily practice into a living portfolio'
+        : 'Loops de aprendizaje agéntico personalizados que convierten la práctica en tu portafolio vivo',
+      tags: ['Claude Code', 'Creativity Gym', 'Storytelling AI', 'In Development'],
+      inDevelopment: true,
+      demoUrl: '#',
+      imgLeft1: '/agents/img-ajustadas/creativity-1.png',
+      imgLeft2: '/agents/img-ajustadas/creativity-2.png',
+      imgRight: '/agents/img-ajustadas/creativity-main.png',
+      fallbackLeft1: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=800&auto=format&fit=crop',
+      fallbackLeft2: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop',
+      fallbackRight: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=800&auto=format&fit=crop',
+    },
+    {
+      id: 'agent-08',
+      number: '08',
+      category: isEn ? 'AGENT-FIRST STRATEGIC DESIGN' : 'DISEÑO ESTRATÉGICO AGENT-FIRST',
+      title: 'Redesign Client Platforms',
+      description: isEn
+        ? 'Full redesign of web platforms and brands like Invisa and Amarte built on Agent-First principles: ultra-fast interfaces, premium dark aesthetics, and native AI agents.'
+        : 'Rediseño integral de plataformas web y marcas como Invisa y Amarte bajo el principio Agent-First: interfaces ultrarrápidas, diseño dark premium y agentes conversacionales nativos',
+      problem: isEn
+        ? 'Traditional static websites with low conversion rates and zero agentic integration'
+        : 'Sitios web tradicionales estáticos con baja conversión y sin integración agéntica',
+      motivation: isEn
+        ? 'Demonstrate that a modern web app must be a living, agentic, conversational experience'
+        : 'Demostrar que una web moderna debe ser una experiencia viva, agéntica y conversacional',
+      differentiator: isEn
+        ? 'Native AI architecture, Linear/Stripe style dark aesthetics, and direct chatbot integration'
+        : 'Arquitectura nativa en IA, estética oscura estilo Linear/Stripe e integración directa de chatbots',
+      tags: ['Agent-First UI', 'React', 'Tailwind', 'Brand Strategy', 'Invisa & Amarte'],
+      demoUrl: '#',
+      imgLeft1: '/agents/img-ajustadas/redesign-1.png',
+      imgLeft2: '/agents/img-ajustadas/redesign-2.png',
+      imgRight: '/agents/img-ajustadas/redesign-main.png',
+      fallbackLeft1: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=800&auto=format&fit=crop',
+      fallbackLeft2: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop',
+      fallbackRight: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop',
+    },
+  ];
+}
 
 interface ProjectsSectionProps {
   onNavigate?: (route: string) => void;
@@ -206,7 +284,8 @@ interface ProjectsSectionProps {
 }
 
 export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onNavigate, onOpenVideo }) => {
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
+  const aiProjects = getProjects(language);
   const [activeAgentId, setActiveAgentId] = useState<string>('agent-01');
   const isManualScrolling = useRef(false);
 
@@ -215,9 +294,9 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onNavigate, on
       if (isManualScrolling.current) return;
 
       const navThreshold = 250;
-      let currentActiveId = AI_PROJECTS[0].id;
+      let currentActiveId = aiProjects[0].id;
 
-      for (const proj of AI_PROJECTS) {
+      for (const proj of aiProjects) {
         const elem = document.getElementById(proj.id);
         if (elem) {
           const rect = elem.getBoundingClientRect();
@@ -233,7 +312,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onNavigate, on
 
     window.addEventListener('scroll', handleScrollSync, { passive: true });
     return () => window.removeEventListener('scroll', handleScrollSync);
-  }, []);
+  }, [aiProjects]);
 
   const scrollToAgent = (id: string) => {
     setActiveAgentId(id);
@@ -271,7 +350,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onNavigate, on
           </div>
 
           <div className="flex items-center gap-2 flex-1 overflow-x-auto no-scrollbar">
-            {AI_PROJECTS.map((proj) => {
+            {aiProjects.map((proj) => {
               const isActive = activeAgentId === proj.id;
               return (
                 <button
@@ -293,12 +372,12 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onNavigate, on
 
         {/* Stacking Cards Container */}
         <div className="flex flex-col gap-6 md:gap-10">
-          {AI_PROJECTS.map((project, index) => (
+          {aiProjects.map((project, index) => (
             <div key={project.id} id={project.id} className="scroll-mt-32">
               <ProjectCard
                 project={project}
                 index={index}
-                total={AI_PROJECTS.length}
+                total={aiProjects.length}
                 isActive={activeAgentId === project.id}
                 onNavigate={onNavigate}
                 onOpenVideo={onOpenVideo}
