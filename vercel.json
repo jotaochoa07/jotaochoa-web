@@ -1,5 +1,16 @@
 {
+  "redirects": [
+    {
+      "source": "/local-services",
+      "destination": "/servicios-locales",
+      "permanent": true
+    }
+  ],
   "rewrites": [
+    {
+      "source": "/servicios-locales",
+      "destination": "/servicios-locales.html"
+    },
     {
       "source": "/((?!.*\\.).*)",
       "destination": "/index.html"

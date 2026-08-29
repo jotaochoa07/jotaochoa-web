@@ -14,11 +14,19 @@ import { VoiceAgentModal } from './components/VoiceAgentModal';
 import { VideoModal } from './components/VideoModal';
 import { HumanosLanding } from './components/HumanosLanding';
 import { DesktopSideDock } from './components/DesktopSideDock';
+import { LocalServicesLanding } from './components/local-services/LocalServicesLanding';
+
+type AppRoute = 'home' | 'humanos' | 'servicios-locales';
+
+const getRoute = (): AppRoute => {
+  const pathname = window.location.pathname.toLowerCase().replace(/\/$/, '') || '/';
+  if (pathname === '/servicios-locales') return 'servicios-locales';
+  if (pathname === '/humanos') return 'humanos';
+  return 'home';
+};
 
 export const App: React.FC = () => {
-  const [currentRoute, setCurrentRoute] = useState<'home' | 'humanos'>(() => {
-    return window.location.pathname.toLowerCase().includes('humanos') ? 'humanos' : 'home';
-  });
+  const [currentRoute, setCurrentRoute] = useState<AppRoute>(getRoute);
   const [isCVModalOpen, setIsCVModalOpen] = useState(false);
   const [isVoiceAgentModalOpen, setIsVoiceAgentModalOpen] = useState(false);
   const [videoState, setVideoState] = useState<{ isOpen: boolean; url: string; title: string }>({
@@ -29,7 +37,7 @@ export const App: React.FC = () => {
 
   React.useEffect(() => {
     const handlePopState = () => {
-      setCurrentRoute(window.location.pathname.toLowerCase().includes('humanos') ? 'humanos' : 'home');
+      setCurrentRoute(getRoute());
     };
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
@@ -54,6 +62,10 @@ export const App: React.FC = () => {
   // If user navigates to dedicated /humanos page
   if (currentRoute === 'humanos') {
     return <HumanosLanding onBackToPortfolio={() => handleNavigate('home')} />;
+  }
+
+  if (currentRoute === 'servicios-locales') {
+    return <LocalServicesLanding />;
   }
 
   return (

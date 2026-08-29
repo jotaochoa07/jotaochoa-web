@@ -14,6 +14,8 @@
   /* Brand accents */
   --accent-humanos: #01C9C7;
   --accent-cash: #22C55E;
+  --accent-local: #18D5E5;
+  --accent-attention: #F4E900;
 }
 
 html, body, #root {
@@ -122,3 +124,114 @@ chat-widget {
   animation-play-state: paused;
 }
 
+.ls-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--accent-local);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.ls-heading {
+  font-size: clamp(2.25rem, 6vw, 4.75rem);
+  font-weight: 900;
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+  text-transform: uppercase;
+}
+
+.ls-primary-button,
+.ls-secondary-button {
+  display: inline-flex;
+  min-height: 3.5rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.125rem;
+  padding: 1rem 1.75rem;
+  font-size: 0.875rem;
+  font-weight: 900;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease;
+}
+
+.ls-primary-button {
+  background: var(--accent-local);
+  color: #000;
+}
+
+.ls-primary-button:hover { background: #fff; }
+
+.ls-secondary-button {
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #fff;
+}
+
+.ls-secondary-button:hover { border-color: #fff; }
+
+.ls-primary-button:focus-visible,
+.ls-secondary-button:focus-visible {
+  outline: 2px solid var(--accent-attention);
+  outline-offset: 4px;
+}
+
+.ls-grid-bg {
+  background-image:
+    linear-gradient(rgba(24,213,229,0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(24,213,229,0.045) 1px, transparent 1px);
+  background-size: 42px 42px;
+}
+
+.ls-voice-orb {
+  animation: lsVoicePulse 2.8s ease-in-out infinite;
+}
+
+.ls-field {
+  display: grid;
+  gap: 0.5rem;
+  color: rgba(255,255,255,0.65);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ls-field input,
+.ls-field select {
+  min-height: 3.25rem;
+  width: 100%;
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 0.5rem;
+  background: #071012;
+  padding: 0.8rem 0.9rem;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.ls-field input:focus-visible,
+.ls-field select:focus-visible {
+  border-color: var(--accent-local);
+  outline: 2px solid rgba(24,213,229,0.35);
+  outline-offset: 2px;
+}
+
+@keyframes lsVoicePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(24,213,229,0.18), 0 0 35px rgba(24,213,229,0.18); }
+  50% { box-shadow: 0 0 0 18px rgba(24,213,229,0), 0 0 55px rgba(24,213,229,0.32); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
