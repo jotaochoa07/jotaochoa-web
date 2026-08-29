@@ -26,7 +26,12 @@ Update the MASTER first, then propagate approved changes to `src/data/localServi
 
 ## Video
 
-Set `VITE_LOCAL_SERVICES_VIDEO_URL` in Vercel to a public YouTube, Vimeo or direct HTML5 video URL. The component detects the provider. If the value is absent, the page shows a branded placeholder without a broken player.
+The landing has two deferred video players. YouTube is loaded only after the visitor presses play:
+
+- Intro / pages with virtual assistants: `https://youtu.be/wiDRwcgXR6U`
+- Coti App: `https://youtu.be/Q8eo2bV0Ovc`
+
+The defaults can be overridden with `VITE_LOCAL_SERVICES_VIDEO_URL` and `VITE_COTI_VIDEO_URL`. Both accept YouTube, Vimeo or direct HTML5 video URLs. If a URL is removed, the component shows a branded fallback without a broken player.
 
 ## WhatsApp
 
@@ -37,16 +42,25 @@ The campaign number and default message live in `src/data/localServices.ts`. The
 `src/lib/analytics.ts` emits these events:
 
 - `landing_visit`
-- `whatsapp_click`
+- `click_whatsapp_hero`
+- `click_whatsapp_header`
+- `click_whatsapp_floating`
+- `click_whatsapp_web_express`
+- `click_whatsapp_final`
+- `click_whatsapp_form`
 - `pricing_view`
-- `video_play`
+- `play_intro_video`
+- `play_coti_video`
+- `click_voice_ai`
+- `submit_lead_form`
+- `select_service`
 - `coti_interest`
 - `assistant_interest`
 - `automation_interest`
 
 Every payload includes `source=local-services` and `campaign=volante-fusa`. If `window.dataLayer` exists, events are pushed there. A `local-services:analytics` browser event is also emitted so another analytics provider can subscribe without changing page components.
 
-Direct HTML5 video emits `video_play` on playback. YouTube/Vimeo play tracking requires the provider's player API when the final video is configured; loading an iframe is intentionally not counted as a play.
+Video events are emitted when the visitor explicitly activates a player. Loading the page or a poster is not counted as playback.
 
 ## GoHighLevel integration
 
@@ -88,6 +102,30 @@ The campaign visual reference was inspected read-only at:
 `C:\Workspace\Clients\Local Services\Branding\volante_impresion_jota-local-services_oficial.png`
 
 No heavy flyer asset was duplicated into the site. Existing optimized brand assets in `public/` are reused.
+
+The Coti App player uses the campaign thumbnail copied from `C:\Workspace\Projects\Jota_Lab_IA_YT\Cotizaciones_Video\miniatura_v1.png` to `public/local-services/coti-video-thumbnail.png`. The image is shown before interaction; the YouTube embed is created only after the visitor presses play.
+
+The Web + IA / Automatización section uses the existing Agent-First video and its thumbnail copied from `C:\Workspace\Projects\Jota_Lab_IA_YT\paginas_agent-first.png` to `public/local-services/agent-first-video-thumbnail.png`. The separate “Tú conoces tu negocio / Yo me encargo de Internet” introduction remains a video-in-preparation placeholder until its recording and URL exist.
+
+The experience section uses real project material and clearly avoids presenting it as testimonials:
+
+- SAI WATER logo: copied from `C:\Workspace\Clients\SAI-WATER\cotizaciones-repo\cotizaciones\vendor\design-system\assets\logo\sai-water-white.svg` to `public/local-services/sai-water-white.svg`.
+- Amarte Suite screenshot: `public/agents/img-ajustadas/redesign-1.png`.
+- Invisa México screenshot: `public/agents/img-ajustadas/redesign-main.png`.
+
+The three compact project summaries are illustrative descriptions of the work performed, not literal customer quotes, endorsements or promises of results.
+
+## Pending next pass
+
+- Review the complete page visually on a physical phone and a desktop monitor, with special attention to reading comfort for people aged 55–65.
+- Confirm the final commercial wording for the three compact project summaries with the project owners before presenting any text as a literal testimonial.
+- Replace the Voice AI placeholder with the official GoHighLevel widget when its script, widget ID and embed are available.
+- Connect the lead form to GoHighLevel and verify `source=local-services` and `campaign=volante-fusa` attribution end to end.
+- Run the final review and deployment workflow only after Jota approves this conversion pass.
+
+Current verification: production build passes, lint reports only pre-existing warnings, YouTube players remain deferred until interaction, the stopwatch progresses `12 → 24 → 36 → 48`, the FAQ contains six objection-closing questions, mobile shows the `Otros servicios` menu link and a hinted horizontal services carousel without the duplicated Web Express card, desktop retains the full grid, and tested mobile/desktop widths have no horizontal overflow.
+
+The current WhatsApp fallback already includes the source and campaign in its prefilled message; the remaining item is to map those values into GHL fields once the native integration is configured.
 
 ## Deployment
 

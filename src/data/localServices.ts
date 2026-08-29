@@ -11,7 +11,7 @@ export const localServicesConfig = {
 
 export const getWhatsAppUrl = () =>
   `https://wa.me/${localServicesConfig.whatsappNumber}?text=${encodeURIComponent(
-    localServicesConfig.whatsappMessage,
+    `${localServicesConfig.whatsappMessage}\n\nFuente: ${localServicesConfig.attribution.source}\nCampaña: ${localServicesConfig.attribution.campaign}`,
   )}`;
 
 export type Service = {
@@ -30,7 +30,7 @@ export const services: Service[] = [
     claim: 'Presencia profesional',
     setup: '$499.000',
     monthly: '$49.900/mes',
-    description: 'Una página profesional, rápida y clara para que te encuentren y contacten.',
+    description: 'Una página clara para que te encuentren, entiendan lo que haces y te escriban.',
     featured: true,
     event: 'pricing_view',
   },
@@ -39,7 +39,7 @@ export const services: Service[] = [
     claim: 'Más impacto, más conversiones',
     setup: '$750.000',
     monthly: '$59.900/mes',
-    description: 'Más contenido, mayor elaboración visual y una estructura orientada a convertir.',
+    description: 'Más contenido y una presentación más completa para negocios que quieren vender activamente.',
     event: 'pricing_view',
   },
   {
@@ -47,7 +47,7 @@ export const services: Service[] = [
     claim: 'Inteligencia que trabaja por ti',
     setup: '$1.800.000',
     monthly: '$99.900/mes',
-    description: 'Una web que captura información, se integra y empieza a ejecutar tareas.',
+    description: 'Una página que recibe información, responde mejor y ayuda con tareas del negocio.',
     event: 'automation_interest',
   },
   {
@@ -55,7 +55,7 @@ export const services: Service[] = [
     claim: 'Cotizaciones que cierran negocios',
     setup: '$2.500.000',
     monthly: '$69.900/mes + consumo IA',
-    description: 'Clientes, catálogo, cotizaciones digitales, IA y seguimiento comercial.',
+    description: 'Prepara, envía y sigue cotizaciones desde un solo lugar, con ayuda inteligente.',
     event: 'coti_interest',
   },
   {
@@ -63,7 +63,7 @@ export const services: Service[] = [
     claim: 'Tu equipo 24/7',
     setup: '$850.000',
     monthly: '$99.900/mes + consumo IA',
-    description: 'Atención inicial por texto o voz, captura de leads, agenda y conexión con CRM.',
+    description: 'Un asistente que puede responder por texto o voz y recoger datos de personas interesadas.',
     event: 'assistant_interest',
   },
   {
@@ -71,7 +71,7 @@ export const services: Service[] = [
     claim: 'Menos trabajo, más resultados',
     setup: '$650.000',
     monthly: '$49.900/mes',
-    description: 'Conecta formularios, leads, mensajes y tareas que hoy alguien hace manualmente.',
+    description: 'Reduce tareas repetitivas entre formularios, mensajes, clientes y notificaciones.',
     event: 'automation_interest',
   },
 ];

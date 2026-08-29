@@ -135,11 +135,24 @@ chat-widget {
   text-transform: uppercase;
 }
 
+.ls-landing {
+  font-size: 17px;
+  line-height: 1.65;
+}
+
 .ls-heading {
   font-size: clamp(2.25rem, 6vw, 4.75rem);
   font-weight: 900;
   line-height: 0.98;
   letter-spacing: -0.055em;
+  text-transform: uppercase;
+}
+
+.ls-heading-soft {
+  font-size: clamp(2rem, 4.5vw, 3.75rem);
+  font-weight: 850;
+  line-height: 1.05;
+  letter-spacing: -0.045em;
   text-transform: uppercase;
 }
 
@@ -166,6 +179,40 @@ chat-widget {
 
 .ls-primary-button:hover { background: #fff; }
 
+.ls-whatsapp-button {
+  display: inline-flex;
+  min-height: 3.5rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  border-radius: 0.25rem;
+  background: #25d366;
+  padding: 1rem 1.75rem;
+  color: #07130b;
+  font-size: 0.875rem;
+  font-weight: 900;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  box-shadow: 0 10px 32px rgba(37, 211, 102, 0.18);
+  transition: transform 180ms ease, background-color 180ms ease;
+}
+
+.ls-whatsapp-button:hover {
+  transform: translateY(-1px);
+  background: #fff;
+}
+
+.ls-whatsapp-button-large {
+  min-height: 4.5rem;
+  padding: 1.25rem 1.75rem;
+  font-size: 1rem;
+}
+
+.ls-whatsapp-button:focus-visible {
+  outline: 2px solid var(--accent-attention);
+  outline-offset: 4px;
+}
+
 .ls-secondary-button {
   border: 1px solid rgba(255,255,255,0.25);
   color: #fff;
@@ -190,6 +237,108 @@ chat-widget {
   animation: lsVoicePulse 2.8s ease-in-out infinite;
 }
 
+.ls-stopwatch-wrap {
+  position: relative;
+  display: flex;
+  width: 100%;
+  max-width: 31rem;
+  flex-direction: column;
+  align-items: center;
+  justify-self: center;
+  padding-top: 2.75rem;
+}
+
+.ls-stopwatch-crown {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 5.8rem;
+  height: 3.25rem;
+  transform: translateX(-50%);
+  border: 3px solid var(--accent-local);
+  border-radius: 0.75rem 0.75rem 0.25rem 0.25rem;
+  background: #061215;
+  box-shadow: 0 0 24px rgba(24, 213, 229, 0.24);
+}
+
+.ls-stopwatch-crown::before,
+.ls-stopwatch-crown::after {
+  content: '';
+  position: absolute;
+  left: 0.65rem;
+  right: 0.65rem;
+  height: 2px;
+  background: rgba(24, 213, 229, 0.55);
+}
+
+.ls-stopwatch-crown::before { top: 0.9rem; }
+.ls-stopwatch-crown::after { top: 1.65rem; }
+
+.ls-stopwatch-button {
+  position: absolute;
+  top: 3rem;
+  right: 14%;
+  width: 3.7rem;
+  height: 1.35rem;
+  transform: rotate(38deg);
+  border: 2px solid rgba(24, 213, 229, 0.75);
+  border-radius: 0.35rem;
+  background: #061215;
+}
+
+.ls-stopwatch {
+  position: relative;
+  width: min(100%, 28rem);
+  aspect-ratio: 1;
+  border: 2px solid rgba(24, 213, 229, 0.45);
+  border-radius: 999px;
+  padding: 1.35rem;
+  background: repeating-conic-gradient(from -1deg, rgba(24,213,229,.55) 0deg 1deg, transparent 1deg 10deg);
+  box-shadow: 0 0 90px rgba(24, 213, 229, 0.14);
+}
+
+.ls-stopwatch::before {
+  content: '';
+  position: absolute;
+  inset: 0.9rem;
+  border-radius: inherit;
+  background: #031014;
+}
+
+.ls-stopwatch-face {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 5px solid var(--accent-local);
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(24,213,229,.12), #020607 67%);
+  box-shadow: inset 0 0 60px rgba(24, 213, 229, 0.14), 0 0 30px rgba(24, 213, 229, 0.35);
+}
+
+.ls-stopwatch-number {
+  font-size: clamp(5rem, 15vw, 8.75rem);
+  font-weight: 900;
+  line-height: 0.82;
+  letter-spacing: -0.085em;
+  animation: lsNumberIn 320ms ease-out both;
+}
+
+.ls-stopwatch-hours {
+  margin-top: 0.75rem;
+  transform: rotate(-2deg);
+  background: var(--accent-attention);
+  padding: 0.4rem 1.25rem;
+  color: #000;
+  font-size: clamp(1.1rem, 4vw, 1.8rem);
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
 .ls-field {
   display: grid;
   gap: 0.5rem;
@@ -209,7 +358,7 @@ chat-widget {
   background: #071012;
   padding: 0.8rem 0.9rem;
   color: #fff;
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 600;
   letter-spacing: normal;
   text-transform: none;
@@ -226,6 +375,46 @@ chat-widget {
   0%, 100% { box-shadow: 0 0 0 0 rgba(24,213,229,0.18), 0 0 35px rgba(24,213,229,0.18); }
   50% { box-shadow: 0 0 0 18px rgba(24,213,229,0), 0 0 55px rgba(24,213,229,0.32); }
 }
+
+@keyframes lsNumberIn {
+  from { opacity: 0; transform: translateY(-0.35rem) scale(0.94); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 639px) {
+  .ls-stopwatch-wrap { max-width: 23rem; }
+  .ls-stopwatch { width: min(92vw, 21rem); }
+  .ls-stopwatch-button { right: 10%; }
+
+  #servicios > div > .mt-12.grid {
+    position: relative;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding-bottom: 1rem;
+  }
+
+  #servicios > div > .mt-12.grid::-webkit-scrollbar { display: none; }
+  #servicios > div > .mt-12.grid > article { min-width: 84vw; scroll-snap-align: start; }
+  #servicios > div > .mt-12.grid > article:first-child { display: none; }
+  #servicios > div > .mt-12.grid::before {
+    position: absolute;
+    top: -2.8rem;
+    right: 0;
+    color: var(--accent-attention);
+    content: '←  DESLIZA PARA VER MÁS  →';
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+  }
+}
+
+#servicios > div { display: flex; flex-direction: column; }
+#servicios > div > p.mt-6 { order: 3; }
+#servicios > div > .mt-10.grid.gap-6 { order: 5; }
+#servicios > div > .mt-12.grid { order: 6; }
+#servicios > div > p:last-child { order: 7; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

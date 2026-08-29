@@ -1,12 +1,17 @@
-import { useState, type FormEvent } from 'react';
+import { useEffect, useState, type FormEvent } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { localServicesConfig } from '../../data/localServices';
 import { trackLocalServicesEvent } from '../../lib/analytics';
 
-const interests = ['Web Express', 'Web Negocio', 'Web + IA', 'Coti App', 'Asistente IA + Voice Chat', 'Automatización'];
+const interests = ['Web Express', 'Web Negocio', 'Web + IA / Automatización', 'Coti App', 'Asistente IA + Voice Chat', 'CRM', 'Automatización'];
 
-export const LocalServicesLeadCapture = () => {
+export const LocalServicesLeadCapture = ({ selectedInterest = '' }: { selectedInterest?: string }) => {
   const [submitted, setSubmitted] = useState(false);
+  const [interest, setInterest] = useState(selectedInterest);
+
+  useEffect(() => {
+    if (selectedInterest) setInterest(selectedInterest);
+  }, [selectedInterest]);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -17,8 +22,11 @@ export const LocalServicesLeadCapture = () => {
       `Negocio: ${data.get('business')}`,
       `Teléfono: ${data.get('phone')}`,
       `Interés: ${data.get('interest')}`,
+      `Fuente: ${localServicesConfig.attribution.source}`,
+      `Campaña: ${localServicesConfig.attribution.campaign}`,
     ].join('\n');
-    trackLocalServicesEvent('whatsapp_click', { placement: 'lead_form', interest: data.get('interest') });
+    trackLocalServicesEvent('submit_lead_form', { interest: data.get('interest') });
+    trackLocalServicesEvent('click_whatsapp_form', { interest: data.get('interest') });
     setSubmitted(true);
     window.open(`https://wa.me/${localServicesConfig.whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
   };
@@ -27,9 +35,9 @@ export const LocalServicesLeadCapture = () => {
     <form onSubmit={handleSubmit} className="grid gap-4 rounded-[2rem] border border-white/15 bg-white/[0.04] p-6 sm:grid-cols-2 sm:p-8">
       <label className="ls-field">Nombre<input name="name" required autoComplete="name" /></label>
       <label className="ls-field">Negocio<input name="business" required autoComplete="organization" /></label>
-      <label className="ls-field">Teléfono<input name="phone" required inputMode="tel" autoComplete="tel" /></label>
-      <label className="ls-field">Servicio de interés
-        <select name="interest" required defaultValue="">
+      <label className="ls-field">WhatsApp<input name="phone" required inputMode="tel" autoComplete="tel" /></label>
+      <label className="ls-field">¿Qué necesitas?
+        <select name="interest" required value={interest} onChange={(event) => { setInterest(event.target.value); trackLocalServicesEvent('select_service', { service: event.target.value }); }}>
           <option value="" disabled>Selecciona una opción</option>
           {interests.map((interest) => <option key={interest}>{interest}</option>)}
         </select>

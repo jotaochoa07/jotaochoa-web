@@ -20,6 +20,10 @@ type AppRoute = 'home' | 'humanos' | 'servicios-locales';
 
 const getRoute = (): AppRoute => {
   const pathname = window.location.pathname.toLowerCase().replace(/\/$/, '') || '/';
+  if (pathname === '/local-services') {
+    window.history.replaceState({}, '', '/servicios-locales');
+    return 'servicios-locales';
+  }
   if (pathname === '/servicios-locales') return 'servicios-locales';
   if (pathname === '/humanos') return 'humanos';
   return 'home';
