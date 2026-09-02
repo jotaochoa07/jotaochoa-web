@@ -392,29 +392,49 @@ chat-widget {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
-    padding-bottom: 1rem;
+    padding: 0.5rem 3.5rem 1.5rem 0.5rem;
   }
 
   #servicios > div > .mt-12.grid::-webkit-scrollbar { display: none; }
-  #servicios > div > .mt-12.grid > article { min-width: 84vw; scroll-snap-align: start; }
+  #servicios > div > .mt-12.grid > article { min-width: calc(100vw - 5rem); scroll-snap-align: center; }
   #servicios > div > .mt-12.grid > article:first-child { display: none; }
   #servicios > div > .mt-12.grid::before {
     position: absolute;
     top: -2.8rem;
     right: 0;
-    color: var(--accent-attention);
-    content: '←  DESLIZA PARA VER MÁS  →';
+    color: #18d5e5;
+    content: none;
     font-size: 0.72rem;
     font-weight: 900;
     letter-spacing: 0.08em;
   }
+  #servicios > div > .mt-12.grid::after {
+    position: absolute;
+    bottom: -0.15rem;
+    left: 50%;
+    color: #18d5e5;
+    content: '●  ○  ○  ○  ○';
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    transform: translateX(-50%);
+  }
+  #servicios > div > .mt-12.grid > article.ls-service-active { outline: 3px solid #18d5e5; outline-offset: 4px; }
+
+  .ls-carousel-arrow { display: inline-flex; height: 2.25rem; width: 2.25rem; align-items: center; justify-content: center; border: 2px solid #18d5e5; border-radius: 9999px; background: #18d5e5; color: #020607; font-size: 1.25rem; font-weight: 900; box-shadow: 0 0 18px rgba(24,213,229,0.35); }
+  .ls-carousel-arrow:active { transform: scale(0.94); }
+  .ls-carousel-helper { position: relative; }
 }
 
 #servicios > div { display: flex; flex-direction: column; }
 #servicios > div > p.mt-6 { order: 3; }
 #servicios > div > .mt-10.grid.gap-6 { order: 5; }
-#servicios > div > .mt-12.grid { order: 6; }
+#servicios > div > .mt-12.grid { order: 7; }
 #servicios > div > p:last-child { order: 7; }
+
+@media (max-width: 639px) {
+  #servicios > div > .ls-carousel-helper { order: 6; }
+  #servicios > div > p:last-child { order: 8; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

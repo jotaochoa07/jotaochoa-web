@@ -1,25 +1,29 @@
-import { useEffect, useState, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { Mic2, ShieldCheck, Sparkles } from 'lucide-react';
 import { trackLocalServicesEvent } from '../../lib/analytics';
 
 type GHLVoiceAgentProps = {
   scriptUrl?: string;
+  resourcesUrl?: string;
   widgetId?: string;
   embed?: ReactNode;
 };
 
-export const GHLVoiceAgent = ({ scriptUrl, widgetId, embed }: GHLVoiceAgentProps) => {
+export const GHLVoiceAgent = ({ scriptUrl, resourcesUrl, widgetId, embed }: GHLVoiceAgentProps) => {
   const [scriptFailed, setScriptFailed] = useState(false);
+  const widgetHostRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!scriptUrl || !widgetId) return;
 
-    const existing = document.querySelector<HTMLScriptElement>(`script[data-ghl-voice-widget="${widgetId}"]`);
+    const existing = document.querySelector<HTMLScriptElement>(`script[data-widget-id="${widgetId}"], script[data-ghl-voice-widget="${widgetId}"]`);
     if (existing) return;
 
     const script = document.createElement('script');
     script.src = scriptUrl;
     script.async = true;
+    if (resourcesUrl) script.dataset.resourcesUrl = resourcesUrl;
+    script.dataset.widgetId = widgetId;
     script.dataset.ghlVoiceWidget = widgetId;
     script.onerror = () => setScriptFailed(true);
     document.body.appendChild(script);
@@ -29,7 +33,18 @@ export const GHLVoiceAgent = ({ scriptUrl, widgetId, embed }: GHLVoiceAgentProps
     };
   }, [scriptUrl, widgetId]);
 
-  const configured = Boolean(scriptUrl && widgetId && embed && !scriptFailed);
+  useEffect(() => {
+    if (!widgetId) return;
+    const moveWidget = () => {
+      const widget = document.querySelector('chat-widget');
+      if (widget && widgetHostRef.current && !widgetHostRef.current.contains(widget)) widgetHostRef.current.appendChild(widget);
+    };
+    moveWidget();
+    const timer = window.setInterval(moveWidget, 500);
+    return () => window.clearInterval(timer);
+  }, [widgetId]);
+
+  const configured = Boolean(scriptUrl && widgetId && !scriptFailed);
 
   return (
     <section id="asistente" className="ls-grid-bg border-y border-[#18d5e5]/20 bg-[#041014] px-5 py-24 sm:px-8">
@@ -49,7 +64,7 @@ export const GHLVoiceAgent = ({ scriptUrl, widgetId, embed }: GHLVoiceAgentProps
         <div className="rounded-[2rem] border border-[#18d5e5]/35 bg-black/60 p-6 shadow-[0_0_60px_rgba(24,213,229,0.09)] sm:p-10">
           {configured ? (
             <div onClick={() => trackLocalServicesEvent('click_voice_ai')} data-ghl-widget-id={widgetId}>
-              {embed}
+              {embed ?? <div ref={widgetHostRef} className="min-h-80"><div className="flex min-h-80 flex-col items-center justify-center text-center"><div className="ls-voice-orb mb-7 flex h-24 w-24 items-center justify-center rounded-full border-2 border-[#18d5e5] bg-[#071a1d]"><Mic2 size={38} className="text-[#18d5e5]" aria-hidden="true" /></div><h3 className="text-2xl font-black uppercase">🎙️ Pruébalo ahora</h3></div></div>}
             </div>
           ) : (
             <div className="flex min-h-80 flex-col items-center justify-center text-center">

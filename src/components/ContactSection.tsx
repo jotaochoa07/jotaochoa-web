@@ -74,8 +74,8 @@ export const ContactSection: React.FC = () => {
                 </div>
                 <div>
                   <span className="text-[10px] font-bold text-[#D7E2EA]/50 uppercase tracking-widest block">WhatsApp / Teléfono</span>
-                  <a href="https://wa.me/573125674063" target="_blank" rel="noreferrer" className="font-bold text-sm text-white hover:text-[#01C9C7] transition-colors">
-                    +57 312 567 4063
+                  <a href="https://wa.me/573011360508" target="_blank" rel="noreferrer" className="font-bold text-sm text-white hover:text-[#01C9C7] transition-colors">
+                    301 136 0508
                   </a>
                 </div>
               </div>

@@ -61,7 +61,7 @@ export const CVModal: React.FC<CVModalProps> = ({ isOpen, onClose }) => {
           </div>
           <div className="flex items-center gap-2">
             <Phone className="w-4 h-4 text-[#01C9C7]" />
-            <span>+57 312 567 4063</span>
+            <span>301 136 0508</span>
           </div>
           <div className="flex items-center gap-2">
             <LinkedinIcon />

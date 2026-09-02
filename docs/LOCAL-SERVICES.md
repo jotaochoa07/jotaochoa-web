@@ -19,7 +19,7 @@ Update the MASTER first, then propagate approved changes to `src/data/localServi
 - `src/components/local-services/LocalServicesLanding.tsx`: page composition.
 - `src/components/local-services/LocalServicesVideo.tsx`: configurable video or branded placeholder.
 - `src/components/local-services/GHLVoiceAgent.tsx`: provider adapter and safe placeholder.
-- `src/components/local-services/LocalServicesLeadCapture.tsx`: lead fields with a temporary WhatsApp handoff.
+- `src/components/local-services/LocalServicesLeadCapture.tsx`: native GoHighLevel form embed and attribution-aware conversation handoff.
 - `src/data/localServices.ts`: public commercial configuration and service cards.
 - `src/lib/analytics.ts`: lightweight analytics event adapter.
 - `servicios-locales.html`: route-specific SEO, social metadata and structured data.
@@ -35,7 +35,7 @@ The defaults can be overridden with `VITE_LOCAL_SERVICES_VIDEO_URL` and `VITE_CO
 
 ## WhatsApp
 
-The campaign number and default message live in `src/data/localServices.ts`. The current URL is generated with the Colombian number `573011360508`. Form data is not stored in the frontend; until GHL is connected, the form hands the conversation to WhatsApp.
+The campaign number and default message live in `src/data/localServices.ts`. The current URL is generated with the Colombian number `573011360508`. Form data is not stored in the frontend. The native GHL form captures name, business, phone and interest, then its configured post-submit action must redirect to WhatsApp so the conversation remains associated with the GHL contact.
 
 ## Analytics and attribution
 
@@ -70,15 +70,15 @@ The adapter is `src/components/local-services/GHLVoiceAgent.tsx`, mounted from `
 
 When GoHighLevel provides the official embed:
 
-1. Add `VITE_GHL_VOICE_WIDGET_SCRIPT_URL` and `VITE_GHL_VOICE_WIDGET_ID` to Vercel.
-2. Convert only the provider's required widget markup into a small React element.
-3. Pass that element through the `embed` prop of `GHLVoiceAgent` in `LocalServicesLanding.tsx`.
+1. The current widget is configured with script `https://widgets.leadconnectorhq.com/loader.js`, resources URL `https://widgets.leadconnectorhq.com/chat-widget/loader.js` and widget ID `6a9713a2abe0b12bac7fc294`.
+2. These values can be overridden with `VITE_GHL_VOICE_WIDGET_SCRIPT_URL`, `VITE_GHL_VOICE_WIDGET_RESOURCES_URL` and `VITE_GHL_VOICE_WIDGET_ID` in Vercel.
+3. If GHL later requires additional provider markup, convert only that markup into a small React element and pass it through the `embed` prop.
 
 Do not paste secrets or API tokens into Git. Do not reuse the existing portfolio widget ID unless GHL confirms it belongs to Local Services. The adapter loads the script asynchronously; a script failure changes only the demo card and cannot break the rest of the landing.
 
 ### Lead form
 
-The current form contains the minimum fields: name, business, phone and service of interest. When the GHL form or API configuration is ready, replace the WhatsApp handoff inside `LocalServicesLeadCapture.tsx` with the official GHL form/embed or a server-side submission. Preserve attribution fields:
+The landing now embeds the official GHL form `3kwoqFYs5XIHIUuKqSb3`. It captures name, business, phone and service of interest. The iframe URL carries `source=local-services` and `campaign=volante-fusa` as query context. In GHL, configure the form's post-submit action to redirect to the WhatsApp conversation flow and keep the contact association.
 
 - `source`: `local-services`
 - `campaign`: `volante-fusa`
@@ -113,7 +113,7 @@ The experience section uses real project material and clearly avoids presenting 
 - Amarte Suite screenshot: `public/agents/img-ajustadas/redesign-1.png`.
 - Invisa México screenshot: `public/agents/img-ajustadas/redesign-main.png`.
 
-The three compact project summaries are illustrative descriptions of the work performed, not literal customer quotes, endorsements or promises of results.
+The three compact project reviews use concise first-person descriptions and five-star visual ratings. Confirm final wording with the project owners before presenting any text as a literal testimonial.
 
 ## Pending next pass
 
@@ -126,6 +126,15 @@ The three compact project summaries are illustrative descriptions of the work pe
 Current verification: production build passes, lint reports only pre-existing warnings, YouTube players remain deferred until interaction, the stopwatch progresses `12 → 24 → 36 → 48`, the FAQ contains six objection-closing questions, mobile shows the `Otros servicios` menu link and a hinted horizontal services carousel without the duplicated Web Express card, desktop retains the full grid, and tested mobile/desktop widths have no horizontal overflow.
 
 The current WhatsApp fallback already includes the source and campaign in its prefilled message; the remaining item is to map those values into GHL fields once the native integration is configured.
+
+## Meta Pixel setup
+
+The landing includes the `MetaPixel` component with Pixel ID `3381316055373920`. `VITE_META_PIXEL_ID` may override it per environment. The component sends `PageView` once and includes the noscript fallback.
+
+1. In Meta Business Manager, open **Events Manager → Connect data sources → Web → Meta Pixel** and create a pixel for AgenteJota.
+2. Copy the numeric Pixel ID (not a token or password) and send it to the developer.
+3. Add `VITE_META_PIXEL_ID` with that value in Vercel for Production, then redeploy.
+4. Verify `PageView` in Events Manager using Test Events. Later we can map form completion and WhatsApp clicks to `Lead`/`Contact` after confirming the GHL redirect.
 
 ## Deployment
 

@@ -99,9 +99,9 @@ export const LocalServicesVideo = ({
     <section id="video" className="px-5 py-24 sm:px-8">
       <div className="mx-auto max-w-6xl">
         <div className="mx-auto mb-10 max-w-3xl text-center">
-          <span className="ls-kicker">Video en preparación</span>
+          <span className="ls-kicker">Conoce cómo puedo ayudarte</span>
           <h2 className="ls-heading-soft mt-5">Tú conoces tu negocio <span className="block text-[#18d5e5]">Yo me encargo de Internet</span></h2>
-          <p className="mt-5 text-lg leading-relaxed text-white/70">Estoy preparando este video para explicarte el proceso sin tecnicismos y sin que tengas que aprender herramientas raras.</p>
+          <p className="mt-5 text-lg leading-relaxed text-white/70">En este video te explico, sin tecnicismos, cómo podemos hacer que tu negocio se vea profesional, aparezca cuando te buscan y aumentes las ventas de tu negocio y de tus servicios.</p>
         </div>
         <div className="relative aspect-video overflow-hidden rounded-[2rem] border border-white/15 bg-[#071012] shadow-2xl">{player}</div>
       </div>
