@@ -12,6 +12,7 @@ type LocalServicesVideoProps = {
   title?: string;
   compact?: boolean;
   playLabel?: string;
+  vertical?: boolean;
 };
 
 const getVideoType = (url: string): VideoType => {
@@ -25,7 +26,7 @@ const getEmbedUrl = (url: string, type: VideoType) => {
     const shortsMatch = url.match(/youtube\.com\/shorts\/([^?&/]+)/);
     const id = shortsMatch?.[1]
       ?? (url.includes('youtu.be/') ? url.split('youtu.be/')[1]?.split(/[?&]/)[0] : new URL(url).searchParams.get('v'));
-    return id ? `https://www.youtube-nocookie.com/embed/${id}?autoplay=1` : url;
+    return id ? `https://www.youtube.com/embed/${id}?autoplay=1&rel=0` : url;
   }
   if (type === 'vimeo') {
     const id = url.split('/').filter(Boolean).pop();
@@ -41,6 +42,7 @@ export const LocalServicesVideo = ({
   title = 'Jota explica Local Services',
   compact = false,
   playLabel = 'Reproducir video',
+  vertical = false,
 }: LocalServicesVideoProps) => {
   const [active, setActive] = useState(false);
   const type = url ? getVideoType(url) : undefined;
@@ -48,7 +50,7 @@ export const LocalServicesVideo = ({
   const event = kind === 'coti' ? 'play_coti_video' : 'play_intro_video';
   const resolvedPoster = posterImage ?? (kind === 'intro' ? '/jota-avatar.png' : undefined);
   const posterClass = posterImage
-    ? 'object-cover opacity-80'
+    ? 'object-cover opacity-100'
     : kind === 'intro'
       ? 'max-w-[65%] object-contain object-right-bottom opacity-85'
       : 'object-cover opacity-45';
@@ -76,7 +78,7 @@ export const LocalServicesVideo = ({
     <div className="absolute inset-0 overflow-hidden bg-[radial-gradient(circle_at_72%_42%,rgba(24,213,229,0.2),transparent_33%),linear-gradient(135deg,#061214,#010303)]">
       {resolvedPoster && <img src={resolvedPoster} alt="" loading="lazy" className={`absolute bottom-0 right-0 h-full w-full ${posterClass}`} />}
       {!posterImage && <div className="absolute inset-0 bg-gradient-to-r from-[#020607] via-[#020607]/75 to-transparent" />}
-      <div className="relative z-10 flex h-full max-w-[70%] flex-col items-start justify-end p-6 sm:p-10">
+      <div className={`relative z-10 flex h-full flex-col p-6 sm:p-10 ${vertical ? 'max-w-full items-center justify-end pb-14 text-center sm:pb-20' : 'max-w-[70%] items-start justify-end'}`}>
         <button
           type="button"
           onClick={activate}
@@ -86,7 +88,7 @@ export const LocalServicesVideo = ({
         >
           <Play size={28} fill="currentColor" aria-hidden="true" />
         </button>
-        <p className="mt-5 text-lg font-black uppercase leading-tight sm:text-2xl">{url ? playLabel : 'Video próximamente'}</p>
+        <p className="ls-video-cta-label mt-5 text-xl font-black uppercase leading-tight sm:text-2xl">{url ? playLabel : 'Video próximamente'}</p>
       </div>
     </div>
   );
@@ -103,7 +105,7 @@ export const LocalServicesVideo = ({
           <h2 className="ls-heading-soft mt-5">Tú conoces tu negocio <span className="block text-[#18d5e5]">Yo me encargo de Internet</span></h2>
           <p className="mt-5 text-lg leading-relaxed text-white/70">En este video te explico, sin tecnicismos, cómo podemos hacer que tu negocio se vea profesional, aparezca cuando te buscan y aumentes las ventas de tu negocio y de tus servicios.</p>
         </div>
-        <div className="relative aspect-video overflow-hidden rounded-[2rem] border border-white/15 bg-[#071012] shadow-2xl">{player}</div>
+        <div className={`relative ${vertical ? 'mx-auto aspect-[9/16] w-full max-w-md' : 'aspect-video'} overflow-hidden rounded-[2rem] border border-white/15 bg-[#071012] shadow-2xl`}>{player}</div>
       </div>
     </section>
   );

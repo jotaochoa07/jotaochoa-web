@@ -28,10 +28,11 @@ Update the MASTER first, then propagate approved changes to `src/data/localServi
 
 The landing has two deferred video players. YouTube is loaded only after the visitor presses play:
 
-- Intro / pages with virtual assistants: `https://youtu.be/wiDRwcgXR6U`
+- Main campaign video (vertical): `https://youtube.com/shorts/77BcVhsR58E`
+- Agent-First / pages with virtual assistants: `https://youtu.be/wiDRwcgXR6U`
 - Coti App: `https://youtu.be/Q8eo2bV0Ovc`
 
-The defaults can be overridden with `VITE_LOCAL_SERVICES_VIDEO_URL` and `VITE_COTI_VIDEO_URL`. Both accept YouTube, Vimeo or direct HTML5 video URLs. If a URL is removed, the component shows a branded fallback without a broken player.
+The defaults can be overridden with `VITE_LOCAL_SERVICES_VIDEO_URL`, `VITE_AGENT_FIRST_VIDEO_URL` and `VITE_COTI_VIDEO_URL`. Both accept YouTube, Vimeo or direct HTML5 video URLs. If a URL is removed, the component shows a branded fallback without a broken player. The main campaign video uses a 9:16 player and a dedicated poster.
 
 ## WhatsApp
 
