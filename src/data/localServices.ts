@@ -5,14 +5,35 @@ export const localServicesConfig = {
     'Hola Jota, vi tus servicios para negocios y quiero saber qué opción me conviene.',
   attribution: {
     source: 'local-services',
-    campaign: 'volante-fusa',
   },
 } as const;
 
-export const getWhatsAppUrl = () =>
-  `https://wa.me/${localServicesConfig.whatsappNumber}?text=${encodeURIComponent(
-    `${localServicesConfig.whatsappMessage}\n\nFuente: ${localServicesConfig.attribution.source}\nCampaña: ${localServicesConfig.attribution.campaign}`,
+export type LandingAttribution = {
+  source: typeof localServicesConfig.attribution.source;
+  campaign?: string;
+};
+
+export const resolveLandingAttribution = (
+  search = typeof window === 'undefined' ? '' : window.location.search,
+): LandingAttribution => {
+  const params = new URLSearchParams(search);
+  const raw = params.get('utm_campaign') ?? params.get('campaign');
+  const campaign = raw?.trim() || undefined;
+
+  return {
+    source: localServicesConfig.attribution.source,
+    ...(campaign ? { campaign } : {}),
+  };
+};
+
+export const getWhatsAppUrl = (service?: string, search?: string) => {
+  const { source, campaign } = resolveLandingAttribution(search);
+  const serviceLine = service ? `\nServicio: ${service}` : '';
+  const campaignLine = campaign ? `\nCampaña: ${campaign}` : '';
+  return `https://wa.me/${localServicesConfig.whatsappNumber}?text=${encodeURIComponent(
+    `${localServicesConfig.whatsappMessage}${serviceLine}\n\nFuente: ${source}${campaignLine}`,
   )}`;
+};
 
 export type Service = {
   name: string;

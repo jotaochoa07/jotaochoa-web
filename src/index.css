@@ -138,6 +138,71 @@ chat-widget {
 .ls-landing {
   font-size: 17px;
   line-height: 1.65;
+  scroll-padding-bottom: 6rem;
+}
+
+.ls-others > summary {
+  list-style: none;
+}
+
+.ls-others > summary::-webkit-details-marker {
+  display: none;
+}
+
+.ls-others-summary:hover {
+  background: rgba(244, 233, 0, 0.04);
+}
+
+.ls-others-summary:focus-visible {
+  outline: 2px solid #f4e900;
+  outline-offset: -2px;
+}
+
+.ls-others[open] .ls-others-toggle {
+  background: transparent;
+  color: #f4e900;
+}
+
+.ls-real-works {
+  display: grid;
+  gap: 1rem;
+}
+
+.ls-real-works figure {
+  margin: 0;
+}
+
+.ls-real-works img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #071012;
+}
+
+.ls-real-works strong {
+  display: block;
+  margin-top: 0.7rem;
+  font-size: 0.85rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.ls-real-works span {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+@media (min-width: 900px) {
+  .ls-real-works {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
 }
 
 .ls-heading {
@@ -397,7 +462,6 @@ chat-widget {
 
   #servicios > div > .mt-12.grid::-webkit-scrollbar { display: none; }
   #servicios > div > .mt-12.grid > article { min-width: calc(100vw - 5rem); scroll-snap-align: center; }
-  #servicios > div > .mt-12.grid > article:first-child { display: none; }
   #servicios > div > .mt-12.grid::before {
     position: absolute;
     top: -2.8rem;

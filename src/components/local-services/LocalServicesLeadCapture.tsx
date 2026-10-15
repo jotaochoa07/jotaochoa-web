@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { localServicesConfig } from '../../data/localServices';
+import { resolveLandingAttribution } from '../../data/localServices';
 
 const GHL_FORM_ID = '3kwoqFYs5XIHIUuKqSb3';
 const GHL_FORM_URL = 'https://link.ghlespanol.com/widget/form/3kwoqFYs5XIHIUuKqSb3';
@@ -24,7 +24,9 @@ export const LocalServicesLeadCapture = (_props: { selectedInterest?: string }) 
     };
   }, []);
 
-  const formUrl = `${GHL_FORM_URL}?source=${encodeURIComponent(localServicesConfig.attribution.source)}&campaign=${encodeURIComponent(localServicesConfig.attribution.campaign)}`;
+  const { source, campaign } = resolveLandingAttribution();
+  const campaignQuery = campaign ? `&campaign=${encodeURIComponent(campaign)}` : '';
+  const formUrl = `${GHL_FORM_URL}?source=${encodeURIComponent(source)}${campaignQuery}`;
 
   return (
     <div className="rounded-[2rem] border border-white/15 bg-white/[0.04] p-3 sm:p-5">
