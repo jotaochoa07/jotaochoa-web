@@ -1,3 +1,5 @@
+import { resolveLandingAttribution } from '../data/localServices';
+
 export type LocalServicesEvent =
   | 'landing_visit'
   | 'click_whatsapp_hero'
@@ -26,10 +28,11 @@ export const trackLocalServicesEvent = (
   event: LocalServicesEvent,
   detail: Record<string, unknown> = {},
 ) => {
+  const { source, campaign } = resolveLandingAttribution();
   const payload = {
     event,
-    source: 'local-services',
-    campaign: 'volante-fusa',
+    source,
+    ...(campaign ? { campaign } : {}),
     ...detail,
   };
 
