@@ -15,8 +15,9 @@ import { VideoModal } from './components/VideoModal';
 import { HumanosLanding } from './components/HumanosLanding';
 import { DesktopSideDock } from './components/DesktopSideDock';
 import { LocalServicesLanding } from './components/local-services/LocalServicesLanding';
+import { PrivacyPolicyPage } from './components/PrivacyPolicyPage';
 
-type AppRoute = 'home' | 'humanos' | 'servicios-locales';
+type AppRoute = 'home' | 'humanos' | 'servicios-locales' | 'politica-de-privacidad';
 
 const getRoute = (): AppRoute => {
   const pathname = window.location.pathname.toLowerCase().replace(/\/$/, '') || '/';
@@ -25,6 +26,7 @@ const getRoute = (): AppRoute => {
     return 'servicios-locales';
   }
   if (pathname === '/servicios-locales' || pathname === '/servicios-locales.html') return 'servicios-locales';
+  if (pathname === '/politica-de-privacidad') return 'politica-de-privacidad';
   if (pathname === '/humanos') return 'humanos';
   return 'home';
 };
@@ -70,6 +72,10 @@ export const App: React.FC = () => {
 
   if (currentRoute === 'servicios-locales') {
     return <LocalServicesLanding />;
+  }
+
+  if (currentRoute === 'politica-de-privacidad') {
+    return <PrivacyPolicyPage />;
   }
 
   return (
